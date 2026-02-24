@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-calm",
+      "description": "A tranquil morning landscape with soft light",
+      "imageUrl": "https://images.unsplash.com/photo-1603276730862-cbf79a742aae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHx8fHRyYW5xdWlsJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc3MTY0OTczMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tranquil landscape"
+    },
+    {
+      "id": "ig-1",
+      "description": "Instagram: technologysolution.ca",
+      "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "instagram profile"
+    },
+    {
+      "id": "ig-2",
+      "description": "Instagram: eccedugroup",
+      "imageUrl": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "social media"
+    },
+    {
+      "id": "ig-3",
+      "description": "Instagram: Creative Feed",
+      "imageUrl": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "creative photography"
+    },
+    {
+      "id": "web-1",
+      "description": "Website: technologysolution.ca",
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "business dashboard"
+    },
+    {
+      "id": "web-2",
+      "description": "Website: rjglobalhiring.ca",
+      "imageUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "recruitment website"
+    },
+    {
+      "id": "web-3",
+      "description": "Website: Enterprise Solutions",
+      "imageUrl": "https://images.unsplash.com/photo-1551434678-e076c223a692?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "corporate tech"
+    },
+    {
+      "id": "win-1",
+      "description": "Windows App: System Orchestrator",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "imageHint": "software interface"
+    }
+  ]
+}
