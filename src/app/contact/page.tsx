@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
-import { Sparkles, Mail, Send, MapPin, Phone } from 'lucide-react';
+import { Sparkles, Mail, Send, MapPin, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -36,15 +36,33 @@ export default function ContactPage() {
           <div className="space-y-8">
             <h2 className="text-3xl font-bold">Connections</h2>
             <div className="space-y-6">
-              <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all group">
+              <a 
+                href="https://www.linkedin.com/in/patelmeetk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Linkedin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-1">LinkedIn</p>
+                  <p className="text-lg font-medium text-white/80 group-hover:text-white">patelmeetk</p>
+                </div>
+              </a>
+
+              <a 
+                href="mailto:meet121112@gmail.com"
+                className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer"
+              >
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-1">Email</p>
-                  <p className="text-lg font-medium text-white/80 group-hover:text-white">hello@meetpatel.com</p>
+                  <p className="text-lg font-medium text-white/80 group-hover:text-white">meet121112@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all group">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -53,16 +71,6 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-1">Location</p>
                   <p className="text-lg font-medium text-white/80 group-hover:text-white">Waterloo, ON, Canada</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-1">Contact</p>
-                  <p className="text-lg font-medium text-white/80 group-hover:text-white">Available on LinkedIn</p>
                 </div>
               </div>
             </div>
@@ -100,7 +108,7 @@ export default function ContactPage() {
               <Textarea id="message" placeholder="What's on your mind?" className="min-h-[160px] rounded-2xl bg-white/[0.03] border-white/10 focus:border-primary/50 transition-all resize-none" />
             </div>
 
-            <Button className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-[0_0_40px_rgba(37,99,235,0.2)] transition-all flex gap-3 group">
+            <Button className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-[0_0_40px_rgba(37,99,235,0.25)] transition-all flex gap-3 group">
               Send Message
               <Send className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>

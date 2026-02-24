@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -10,7 +9,8 @@ import { Tools } from '@/components/tools';
 import { Work } from '@/components/work';
 import { Footer } from '@/components/footer';
 import { Education } from '@/components/education';
-// import { LiveProjects } from '@/components/live-projects';
+import { LiveProjects } from '@/components/live-projects';
+import { VisualShowcase } from '@/components/visual-showcase';
 
 export default function Home() {
   return (
@@ -30,6 +30,8 @@ export default function Home() {
       <Education />
 
       <Tools />
+
+      <VisualShowcase />
 
       <Approach />
 

@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'tnass.ca',
+        hostname: 'tnass.com',
         port: '',
         pathname: '/**',
       },
