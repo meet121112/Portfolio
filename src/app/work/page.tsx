@@ -12,10 +12,10 @@ export default function WorkPage() {
   const projects = [
     {
       id: 'specialty-01',
-      title: 'BRAND IDENTITY DESIGNER',
+      title: 'BRAND IDENTITY & STRATEGIC CONTENT',
       icon: <Palette className="w-8 h-8 text-primary" />,
-      tags: ['Branding', 'Logo Design', 'Social Media'],
-      description: 'A creative visual engine that translates brand values into high-impact assets, focusing on scalable vector systems, color theory, and cohesive typography.'
+      tags: ['Branding', 'Content Writing', 'Social Media'],
+      description: 'A creative visual and verbal engine that translates brand values into high-impact assets and conversion-driven content for websites and social marketing.'
     },
     {
       id: 'specialty-02',

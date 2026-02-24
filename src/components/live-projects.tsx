@@ -51,8 +51,8 @@ const projects = [
   { 
     id: 'web-4', 
     type: 'Website', 
-    name: 'tnass.ca', 
-    link: 'https://tnass.ca',
+    name: 'tnass.com', 
+    link: 'https://tnass.com',
     icon: <Globe className="w-4 h-4" />, 
     stat: 'Enterprise' 
   },

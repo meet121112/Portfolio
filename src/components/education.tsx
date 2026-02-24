@@ -2,17 +2,17 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, GraduationCap, Code2 } from 'lucide-react';
+import { ArrowRight, GraduationCap, Code2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const education = [
   {
-    id: '1',
-    course: 'Physics, Chemistry & Maths',
-    institution: 'AB Higher Secondary School',
-    label: 'Higher Secondary School',
-    description: 'Completed advanced studies in Physics, Chemistry, and Mathematics, establishing a rigorous analytical and scientific foundation for technical logic.',
-    icon: <BookOpen className="w-6 h-6 text-primary" />,
+    id: '3',
+    course: 'Web Development',
+    institution: 'Conestoga College, Waterloo',
+    label: 'Post Graduation',
+    description: 'Post Graduate specialization in modern full-stack development and cloud architecture in the Canadian tech hub, focusing on high-performance strategy.',
+    icon: <Code2 className="w-6 h-6 text-primary" />,
   },
   {
     id: '2',
@@ -21,14 +21,6 @@ const education = [
     label: 'Bachelors Degree',
     description: 'A comprehensive B.E. degree focused on software engineering, data structures, and algorithms, providing a deep environment of technical innovation.',
     icon: <GraduationCap className="w-6 h-6 text-primary" />,
-  },
-  {
-    id: '3',
-    course: 'Web Development',
-    institution: 'Conestoga College, Waterloo',
-    label: 'Post Graduation',
-    description: 'Post Graduate specialization in modern full-stack development and cloud architecture in the Canadian tech hub, focusing on high-performance strategy.',
-    icon: <Code2 className="w-6 h-6 text-primary" />,
   },
 ];
 
@@ -44,7 +36,7 @@ export function Education() {
         }
       },
       { 
-        threshold: 0.15, // Trigger when 15% of the section is visible
+        threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
       }
     );
@@ -81,7 +73,7 @@ export function Education() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
         {education.map((item, index) => (
           <Link 
             key={item.id}

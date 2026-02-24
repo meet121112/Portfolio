@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail, Twitter, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -13,10 +13,8 @@ export function Footer() {
   }, []);
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: <Linkedin className="w-4 h-4" />, href: '#' },
-    { name: 'GitHub', icon: <Github className="w-4 h-4" />, href: '#' },
-    { name: 'Twitter', icon: <Twitter className="w-4 h-4" />, href: '#' },
-    { name: 'Email', icon: <Mail className="w-4 h-4" />, href: 'mailto:contact@meetpatel.com' },
+    { name: 'LinkedIn', icon: <Linkedin className="w-4 h-4" />, href: 'https://www.linkedin.com/in/patelmeetk/' },
+    { name: 'Email', icon: <Mail className="w-4 h-4" />, href: 'mailto:meet121112@gmail.com' },
   ];
 
   const quickLinks = [
@@ -82,6 +80,8 @@ export function Footer() {
                 <a 
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 text-white/60 hover:text-white hover:border-primary/50 hover:bg-white/[0.05] transition-all text-sm group"
                 >
                   <span className="group-hover:text-primary transition-colors">

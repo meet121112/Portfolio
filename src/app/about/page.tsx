@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
-import { Sparkles, Briefcase, Award, ArrowRight, BookOpen, GraduationCap, Code2, Search, Lightbulb, Rocket } from 'lucide-react';
+import { Sparkles, Briefcase, GraduationCap, Code2, ArrowRight, Search, Lightbulb, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -31,30 +31,6 @@ export default function AboutPage() {
 
   const educationMilestones = [
     {
-      id: 1,
-      period: '2016 — 2018',
-      title: 'Higher Secondary Science',
-      institution: 'AB Higher Secondary School',
-      description: 'Rigorous academic training in Physics, Chemistry, and Mathematics, forming the analytical core of my technical logic and problem-solving framework.',
-      icon: <BookOpen className="w-5 h-5" />,
-      stats: [
-        { label: '85th', value: 'Percentile' },
-        { label: 'Science', value: 'Core Stream' }
-      ]
-    },
-    {
-      id: 2,
-      period: '2018 — 2022',
-      title: 'Information Technology Engineering',
-      institution: 'SVIT, Gujarat University',
-      description: 'A comprehensive engineering degree focused on software development, database management, and complex algorithms that serve as the backbone of my full-stack expertise.',
-      icon: <GraduationCap className="w-5 h-5" />,
-      stats: [
-        { label: '7.5', value: 'CGPA' },
-        { label: 'B.E.', value: 'Degree' }
-      ]
-    },
-    {
       id: 3,
       period: '2023 — 2024',
       title: 'Advanced Web Development',
@@ -64,6 +40,18 @@ export default function AboutPage() {
       stats: [
         { label: '3.4', value: 'GPA' },
         { label: 'Post-Grad', value: 'Specialization' }
+      ]
+    },
+    {
+      id: 2,
+      period: '2016 — 2020',
+      title: 'Information Technology Engineering',
+      institution: 'SVIT, Gujarat University',
+      description: 'A comprehensive engineering degree focused on software development, database management, and complex algorithms that serve as the backbone of my full-stack expertise.',
+      icon: <GraduationCap className="w-5 h-5" />,
+      stats: [
+        { label: '7.5', value: 'CGPA' },
+        { label: 'B.E.', value: 'Degree' }
       ]
     }
   ];
@@ -95,13 +83,17 @@ export default function AboutPage() {
 
       {/* Experience Section */}
       <section className="py-20 px-6 max-w-5xl w-full">
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-4 mb-12 slide-up" style={{ animationDelay: '0.2s' }}>
           <Briefcase className="text-primary w-6 h-6" />
           <h2 className="text-3xl font-bold uppercase tracking-tight">Professional Journey</h2>
         </div>
         <div className="space-y-12">
           {experiences.map((exp, i) => (
-            <div key={i} className="relative pl-8 border-l border-white/10 group">
+            <div 
+              key={i} 
+              className="relative pl-8 border-l border-white/10 group slide-up opacity-0" 
+              style={{ animationDelay: `${0.3 + (i * 0.1)}s`, animationFillMode: 'forwards' }}
+            >
               <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-primary transition-transform group-hover:scale-150" />
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                 <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{exp.role}</h3>
@@ -118,7 +110,11 @@ export default function AboutPage() {
       <section className="py-24 px-6 max-w-5xl w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {methodology.map((item, idx) => (
-            <div key={idx} className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/30 transition-all group">
+            <div 
+              key={idx} 
+              className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/30 transition-all group slide-up opacity-0"
+              style={{ animationDelay: `${0.5 + (idx * 0.1)}s`, animationFillMode: 'forwards' }}
+            >
               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
                 {item.icon}
               </div>
@@ -131,7 +127,7 @@ export default function AboutPage() {
 
       {/* RE-IMAGINED EDUCATION SECTION: Structural Timeline */}
       <section className="py-32 px-6 max-w-5xl w-full mx-auto">
-        <div className="mb-24 space-y-4">
+        <div className="mb-24 space-y-4 slide-up" style={{ animationDelay: '0.7s' }}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
             <GraduationCap className="w-3 h-3" />
             ACADEMIC FOUNDATION
@@ -145,8 +141,13 @@ export default function AboutPage() {
           {/* Vertical Track Line */}
           <div className="absolute left-6 md:left-[22px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-white/10 to-transparent hidden md:block" />
 
-          {educationMilestones.map((milestone) => (
-            <div key={milestone.id} className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-16 relative">
+          {educationMilestones.map((milestone, mIdx) => (
+            <div 
+              key={milestone.id} 
+              id={`education-${milestone.id}`} 
+              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-16 relative slide-up opacity-0"
+              style={{ animationDelay: `${0.8 + (mIdx * 0.1)}s`, animationFillMode: 'forwards' }}
+            >
               {/* Year & Icon (Left Rail) */}
               <div className="md:col-span-1">
                 <div className="md:sticky md:top-40 flex md:flex-col items-center md:items-start gap-4">

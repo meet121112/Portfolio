@@ -1,33 +1,101 @@
 'use client';
 
-import React, { use, useState } from 'react';
+import React, { use, useState, useEffect, useRef } from 'react';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { 
   ArrowLeft, 
   Sparkles, 
   ExternalLink, 
-  Instagram,
   Palette,
-  Type,
   Layers,
-  Component,
   Framer,
   Layout,
   Code2,
   AppWindow,
   Cpu,
-  Monitor,
   Globe,
   Share2,
   Server,
-  ShieldCheck
+  ShieldCheck,
+  Video,
+  Type,
+  FileText
 } from 'lucide-react';
 import LinkComponent from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
+
+// Declare global for Instagram script
+declare global {
+  interface Window {
+    instgrm: any;
+  }
+}
+
+/**
+ * Component to embed a single Instagram post via its URL.
+ */
+function InstagramPost({ url }: { url: string }) {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (!window.instgrm) {
+        const script = document.createElement('script');
+        script.src = 'https://www.instagram.com/embed.js';
+        script.async = true;
+        document.body.appendChild(script);
+      } else {
+        const timer = setTimeout(() => {
+          if (window.instgrm && window.instgrm.Embeds) {
+            window.instgrm.Embeds.process();
+          }
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [url]);
+
+  return (
+    <div className="flex justify-center w-full py-2">
+      <blockquote
+        key={url}
+        className="instagram-media w-full"
+        data-instgrm-permalink={url}
+        data-instgrm-version="14"
+        style={{
+          background: 'transparent',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '24px',
+          margin: '1px',
+          maxWidth: '540px',
+          minWidth: '326px',
+          padding: '0',
+          width: '100%',
+        }}
+      >
+        <div style={{ padding: '16px' }}>
+          <a
+            href={url}
+            className="text-primary hover:underline text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Loading Media...
+          </a>
+        </div>
+      </blockquote>
+    </div>
+  );
+}
 
 // Tech Icon components (SVG)
 const TechIcons = {
@@ -89,44 +157,70 @@ const TechIcons = {
       <path d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0zm0 244.1c-18.1 0-35.1-4.6-49.9-12.7l33.8-92.6 24.1 72.3c.3.9.6 1.8.9 2.7-2.8.8-5.8 1.3-8.8 1.3-1.4 0-2.8-.1-4.2-.3l-.3-.1zm-73.4-22.1c-18.1-18.3-29.2-43.5-29.2-71.3 0-11.4 1.9-22.2 5.3-32.3l48.1 131.1c-9.1-8.3-17.3-17.5-24.2-27.5zM128 11.9c18.1 0 35.1 4.6 49.9 12.7l-33.8 92.6-24.1-72.3c-.3-.9-.6-1.8-.9-2.7 2.8-.8 5.8-1.3 8.8-1.3 1.4 0-2.8.1 4.2.3l.3.1zm104.5 116.1c0 11.4-1.9 22.2-5.3 32.3l-48.1-131.1c9.1 8.3 17.3 17.5 24.2 27.5 18.1 18.3 29.2 43.5 29.2 71.3z" fill="#21759b"/>
       <path d="M168.1 128.1c0-13.4-4.8-22.6-8.9-31.1-5.5-8.2-10.6-15.1-10.6-23.3 0-9.6 7.2-18.5 17.5-18.5 1.1 0 2.1.1 3.1.3-12.8-10.4-29.2-16.6-47.1-16.6-21.2 0-40.1 8.7-53.8 22.7 1.4.1 2.7.1 3.8.1 10.3 0 26.2-1.2 26.2-1.2 5.1-.3 5.8 7.2.7 7.9 0 0-5.2.6-11 1l35 104.3 21-63.1-14.9-41.2c-5.1-.4-9.9-1-9.9-1-5.1-.3-4.5-7.9.7-7.9 0 0 16.3 1.2 26.2 1.2 10.3 0 26.2-1.2 26.2-1.2 5.1-.3 5.8 7.2.7 7.9 0 0-5.2.6-11 1l34.7 103.2 9.6-31.9c3.8-11.1 6.7-19.2 6.7-26.1z" fill="#fff"/>
     </svg>
+  ),
+  Python: (
+    <svg viewBox="0 0 128 128" className="w-full h-full">
+      <path d="M64 0C32 0 32 14 32 14v10h34v4H22s-22 0-22 28c0 28 18 28 18 28h10v-14s0-18 18-18h32s18 0 18-18V14S96 0 64 0z" fill="#3776AB"/>
+      <path d="M64 128c32 0 32-14 32-14v-10H62v-4h44s22 0 22-28c0-28-18-28-18-28h-10v14s0 18-18 18H50s-18 0-18 18v28s0 14 32 14z" fill="#FFD43B"/>
+      <circle cx="48" cy="8" r="3" fill="white"/>
+      <circle cx="80" cy="120" r="3" fill="white"/>
+    </svg>
   )
 };
 
 const projectDetails: Record<string, any> = {
   'specialty-01': {
-    title: 'Brand Identity & Social Pulse',
+    title: 'Brand Identity & Strategic Content',
     category: 'Specialty',
     icon: <Palette className="w-12 h-12 text-primary" />,
-    description: 'Developing high-impact visual systems and orchestrating strategic social media growth for global brands.',
-    challenge: 'Businesses often lack visual consistency and a cohesive social strategy, resulting in fragmented brand perception across digital touchpoints.',
-    solution: 'A dual-track framework that builds robust visual foundations (Logos) while maintaining high-engagement social channels.',
-    tags: ['Brand Strategy', 'Visual Design', 'Social Media Management', 'Logo Design', 'Typography'],
+    description: 'Developing high-impact visual systems and crafting strategic content that resonates across web and social ecosystems.',
+    challenge: 'Businesses often struggle to maintain visual consistency and a compelling narrative voice across diverse marketing channels.',
+    solution: 'A holistic framework for brand evolution that pairs robust visual identities with conversion-driven content writing for websites and professional marketing copy for LinkedIn and Instagram.',
+    tags: ['Brand Strategy', 'Visual Design', 'Content Writing', 'Copywriting', 'Social Marketing', 'Logo Design', 'Motion Graphics'],
     techStack: [
-      { name: 'Illustrator', icon: TechIcons.Illustrator },
-      { name: 'Canva', icon: TechIcons.Canva },
-      { name: 'Figma', icon: TechIcons.Figma }
+      { name: 'Illustrator', icon: TechIcons.Illustrator, top: '25%', left: '15%', delay: '0s' },
+      { name: 'Canva', icon: TechIcons.Canva, top: '45%', left: '35%', delay: '1.2s' },
+      { name: 'Figma', icon: TechIcons.Figma, top: '15%', left: '60%', delay: '0.5s' }
     ],
     metrics: [
       { label: 'Brand Consistency', value: '98%' },
-      { label: 'Social Engagement', value: '+150%' },
-      { label: 'Asset Recognition', value: 'High' }
+      { label: 'Content Engagement', value: '+120%' },
+      { label: 'Social Reach', value: 'High' }
     ],
     visualIdentity: [
       { name: 'ECC Education Group', handle: 'eccedugroup.com', url: 'https://eccedugroup.com', logo: 'https://eccedugroup.com/logo.png' },
       { name: 'RJ Global Hiring', handle: 'rjglobalhiring.ca', url: 'https://rjglobalhiring.ca', logo: 'https://rjglobalhiring.ca/logo.png' },
-      { name: 'Royal Kitchen Countertop', handle: 'royalkitchencountertop.ca', url: 'https://royalkitchencountertop.ca', logo: 'https://royalkitchencountertop.ca/logo.png' },
-      { name: 'TNASS', handle: 'tnass.ca', url: 'https://tnass.ca', logo: 'https://tnass.ca/logo.png' },
+      { name: 'Royal Kitchen Countertop', handle: 'royalkitchencountertop.ca', url: 'https://royalkitchencountertop.ca', logo: 'https://royalkitchencountertop.ca/wp-content/uploads/2025/08/cropped-RKC_logo-1.png' },
+      { name: 'TNASS', handle: 'tnass.com', url: 'https://tnass.com', logo: 'https://tnass.com/logo.png' },
       { name: 'Technology Solution', handle: 'technologysolution.ca', url: 'https://technologysolution.ca', logo: 'https://technologysolution.ca/logo.png' }
     ],
-    socialManagement: [
-      { name: 'Technology Solution', handle: '@technologysolution.ca', url: 'https://instagram.com/technologysolution.ca' },
-      { name: 'ECC Education Group', handle: '@eccedugroup', url: 'https://instagram.com/eccedugroup' }
+    instagramPosts: [
+      'https://www.instagram.com/p/DG1tdotPcPo/',
+      'https://www.instagram.com/p/DGem_y6MQu4/',
+      'https://www.instagram.com/p/DGUBd79vMuQ/',
+      'https://www.instagram.com/p/DGPB68Bv4wn/',
+      'https://www.instagram.com/p/DFZVnlpMH83/',
+      'https://www.instagram.com/p/DFqk_SaP_1H/',
+      'https://www.instagram.com/p/DF62RmGsNIg/',
+      'https://www.instagram.com/p/DF65h2AsAPl/',
+      'https://www.instagram.com/p/DGCH2Lov9CD/',
+      'https://www.instagram.com/p/DTTfzUCEXle/',
+      'https://www.instagram.com/p/DSa_OQ0kaeA/',
+      'https://www.instagram.com/p/DSa_j3VkeQH/',
+      'https://www.instagram.com/p/DSGSNdIkfnT/'
+    ],
+    motionGraphics: [
+      'https://www.instagram.com/reel/DKSzjFmxI96/',
+      'https://www.instagram.com/reel/DJpijScRwQ5/',
+      'https://www.instagram.com/p/DSr63YDEVPX/',
+      'https://www.instagram.com/reel/DSdGiQFEWJq/',
+      'https://www.instagram.com/reel/DKNwA0JRqlW/'
     ],
     features: [
-      { title: 'Logo Design', icon: <Palette className="w-6 h-6" />, desc: 'Memorable, scalable brand marks.' },
-      { title: 'Typography', icon: <Type className="w-6 h-6" />, desc: 'Custom font systems for readability.' },
-      { title: 'Asset Systems', icon: <Layers className="w-6 h-6" />, desc: 'Layered components for all media.' },
-      { title: 'Social Strategy', icon: <Share2 className="w-6 h-6" />, desc: 'Engagement-focused content planning.' }
+      { title: 'Logo Systems', icon: <Palette className="w-6 h-6" />, desc: 'Scalable, multi-format brand foundations.' },
+      { title: 'Strategic Copy', icon: <FileText className="w-6 h-6" />, desc: 'Compelling writing for websites and social platforms.' },
+      { title: 'Dynamic Content', icon: <Video className="w-6 h-6" />, desc: 'High-impact motion and video sequences.' },
+      { title: 'Social Strategy', icon: <Share2 className="w-6 h-6" />, desc: 'Engagement-driven marketing for LinkedIn & IG.' }
     ]
   },
   'specialty-02': {
@@ -138,8 +232,8 @@ const projectDetails: Record<string, any> = {
     solution: 'Friction-less design patterns based on user behavior data and cognitive psychology.',
     tags: ['UI Design', 'UX Research', 'Prototyping', 'User Psychology'],
     techStack: [
-      { name: 'Figma', icon: TechIcons.Figma },
-      { name: 'React', icon: TechIcons.React }
+      { name: 'Figma', icon: TechIcons.Figma, top: '25%', left: '20%', delay: '0s' },
+      { name: 'React', icon: TechIcons.React, top: '45%', left: '50%', delay: '1.2s' }
     ],
     metrics: [
       { label: 'User Friction', value: '-45%' },
@@ -159,16 +253,16 @@ const projectDetails: Record<string, any> = {
     title: 'Full-Stack Web Development',
     category: 'Specialty',
     icon: <Code2 className="w-12 h-12 text-primary" />,
-    description: 'Building high-performance, scalable web applications that serve as the technical backbone of marketing success.',
+    description: 'Building high-performance, scalable web applications that serve as the technical backbone of success.',
     challenge: 'Modern web environments require a balance of speed, SEO optimization, and rich interactivity.',
     solution: 'Next-generation tech stacks like Next.js and React, integrated with robust backend services.',
     tags: ['Next.js', 'React', 'TypeScript', 'WordPress', 'Cloud Architecture'],
     techStack: [
-      { name: 'Next.js', icon: TechIcons.Nextjs },
-      { name: 'React', icon: TechIcons.React },
-      { name: 'WordPress', icon: TechIcons.WordPress },
-      { name: 'Node.js', icon: TechIcons.Nodejs },
-      { name: 'MongoDB', icon: TechIcons.MongoDB }
+      { name: 'Next.js', icon: TechIcons.Nextjs, top: '20%', left: '15%', delay: '0s' },
+      { name: 'React', icon: TechIcons.React, top: '45%', left: '35%', delay: '1.2s' },
+      { name: 'WordPress', icon: TechIcons.WordPress, top: '15%', left: '60%', delay: '0.5s' },
+      { name: 'Node.js', icon: TechIcons.Nodejs, top: '60%', left: '20%', delay: '2.1s' },
+      { name: 'MongoDB', icon: TechIcons.MongoDB, top: '55%', left: '75%', delay: '0.8s' }
     ],
     metrics: [
       { label: 'Page Speed', value: 'Sub-1s' },
@@ -179,7 +273,8 @@ const projectDetails: Record<string, any> = {
       { name: 'Technology Solution', handle: 'technologysolution.ca', url: 'https://technologysolution.ca' },
       { name: 'RJ Global Hiring', handle: 'rjglobalhiring.ca', url: 'https://rjglobalhiring.ca' },
       { name: 'Royal Kitchen Countertop', handle: 'royalkitchencountertop.ca', url: 'https://royalkitchencountertop.ca' },
-      { name: 'ECC Education Group', handle: 'eccedugroup.com', url: 'https://eccedugroup.com' }
+      { name: 'ECC Education Group', handle: 'eccedugroup.com', url: 'https://eccedugroup.com' },
+      { name: 'TNASS', handle: 'tnass.com', url: 'https://tnass.com' }
     ],
     features: [
       { title: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'Responsive and fast React interfaces.' },
@@ -192,12 +287,12 @@ const projectDetails: Record<string, any> = {
     title: 'Native Windows Architecture',
     category: 'Specialty',
     icon: <AppWindow className="w-12 h-12 text-primary" />,
-    description: 'Creating high-performance desktop tools for specialized marketing and orchestration workflows.',
+    description: 'Creating high-performance desktop tools for specialized orchestration workflows.',
     challenge: 'Web apps can sometimes lack the deep OS integration needed for intensive automation tasks.',
-    solution: 'Native desktop environments built with .NET and C# for maximum performance and stability.',
-    tags: ['.NET', 'C#', 'Native UI', 'System Orchestration'],
+    solution: 'Native desktop environments built with Python for maximum performance and stability.',
+    tags: ['Python', 'C#', '.NET', 'Native UI', 'System Orchestration'],
     techStack: [
-      { name: '.NET', icon: TechIcons.DotNet }
+      { name: 'Python', icon: TechIcons.Python, top: '40%', left: '40%', delay: '0s' }
     ],
     metrics: [
       { label: 'Execution Speed', value: 'Native' },
@@ -214,9 +309,14 @@ const projectDetails: Record<string, any> = {
     category: 'Specialty',
     icon: <Server className="w-12 h-12 text-primary" />,
     description: 'Designing and managing secure, scalable cloud environments with a focus on high availability and automated security.',
-    challenge: 'Standard hosting solutions often lack the fine-grained control and security automation required for enterprise-grade performance.',
+    challenge: 'Standard hosting solutions often lack the fine-grained control and security automation required for production-grade performance.',
     solution: 'Leveraging AWS EC2 for compute, Nginx for sophisticated request routing, and Win-ACME for hands-free SSL lifecycle management.',
     tags: ['AWS EC2', 'Nginx', 'Win-ACME', 'SSL/TLS', 'DevOps', 'Infrastructure'],
+    techStack: [
+      { name: 'AWS EC2', icon: <Cpu className="w-full h-full text-white" />, top: '25%', left: '15%', delay: '0s' },
+      { name: 'Nginx', icon: <Layers className="w-full h-full text-white" />, top: '45%', left: '35%', delay: '1.2s' },
+      { name: 'Win-ACME', icon: <ShieldCheck className="w-full h-full text-white" />, top: '15%', left: '60%', delay: '0.5s' }
+    ],
     metrics: [
       { label: 'Security Score', value: 'A+' },
       { label: 'Uptime SLA', value: '99.99%' },
@@ -233,6 +333,19 @@ const projectDetails: Record<string, any> = {
 export default function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+  const [isTechVisible, setIsTechVisible] = useState(false);
+  const techSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsTechVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (techSectionRef.current) observer.observe(techSectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const project = projectDetails[id] || {
     title: 'Project Details',
@@ -242,11 +355,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
     solution: 'Applying specialized marketing technology frameworks to achieve measurable growth.',
     tags: ['Innovation', 'Marketing Tech', 'Strategy'],
     techStack: [],
-    metrics: [
-      { label: 'Strategic Alignment', value: '100%' },
-      { label: 'Efficiency Gain', value: '+40%' },
-      { label: 'Impact', value: 'High' }
-    ],
+    metrics: [],
     features: []
   };
 
@@ -263,17 +372,19 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
         </div>
       </div>
 
-      <div className="p-8 rounded-[32px] border border-primary/20 bg-primary/5 space-y-6">
-        <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Key Metrics</h3>
-        <div className="space-y-4">
-          {project.metrics.map((metric: any, idx: number) => (
-            <div key={idx} className="flex items-center justify-between">
-              <span className="text-white/40 text-sm">{metric.label}</span>
-              <span className="text-primary font-bold">{metric.value}</span>
-            </div>
-          ))}
+      {project.metrics && project.metrics.length > 0 && (
+        <div className="p-8 rounded-[32px] border border-primary/20 bg-primary/5 space-y-6">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Key Metrics</h3>
+          <div className="space-y-4">
+            {project.metrics.map((metric: any, idx: number) => (
+              <div key={idx} className="flex items-center justify-between">
+                <span className="text-white/40 text-sm">{metric.label}</span>
+                <span className="text-primary font-bold">{metric.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 
@@ -359,6 +470,55 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
             </p>
           </div>
 
+          {/* Instagram Carousels Showcase */}
+          {project.instagramPosts && (
+            <div className="space-y-16 pt-12 border-t border-white/5">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold flex items-center gap-4">
+                  <span className="text-primary italic">{getNextNum()}</span> Brand Identity & Content
+                </h2>
+                <p className="text-white/40 text-sm italic">Strategic visual storytelling and strategic content evolution for websites, LinkedIn, and Instagram.</p>
+                
+                <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                  <CarouselContent className="-ml-4">
+                    {project.instagramPosts.map((url: string, idx: number) => (
+                      <CarouselItem key={`post-${idx}`} className="pl-4 basis-full sm:basis-1/2">
+                        <InstagramPost url={url} />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="flex justify-end gap-2 mt-4">
+                    <CarouselPrevious className="static translate-y-0" />
+                    <CarouselNext className="static translate-y-0" />
+                  </div>
+                </Carousel>
+              </div>
+
+              {project.motionGraphics && (
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold flex items-center gap-4">
+                    <span className="text-primary italic">{getNextNum()}</span> Motion Graphics & Dynamic Content
+                  </h2>
+                  <p className="text-white/40 text-sm">High-impact dynamic media and motion sequences.</p>
+                  
+                  <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                    <CarouselContent className="-ml-4">
+                      {project.motionGraphics.map((url: string, idx: number) => (
+                        <CarouselItem key={`motion-${idx}`} className="pl-4 basis-full sm:basis-1/2">
+                          <InstagramPost url={url} />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <div className="flex justify-end gap-2 mt-4">
+                      <CarouselPrevious className="static translate-y-0" />
+                      <CarouselNext className="static translate-y-0" />
+                    </div>
+                  </Carousel>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Real-World Execution Lists (Dynamic Steps) */}
           <div className="space-y-12">
             {project.designProjects && (
@@ -442,57 +602,28 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all flex flex-col gap-4"
+                      className="group p-10 rounded-[48px] bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all flex flex-col gap-6"
                     >
-                      <div className="flex justify-between items-center">
-                        <div className="relative w-12 h-12 bg-white/5 rounded-xl overflow-hidden flex items-center justify-center">
+                      <div className="flex flex-col gap-6">
+                        <div className="relative w-full h-[300px] md:h-[400px] bg-zinc-950 rounded-[48px] overflow-hidden flex items-center justify-center border border-white/10 group-hover:bg-zinc-900 transition-all">
                           <Image 
-                            src={link.logo || `https://picsum.photos/seed/${link.handle}/100/100`} 
+                            src={link.logo || `https://picsum.photos/seed/${link.handle}/800/800`} 
                             alt={`${link.name} Logo`}
                             fill
-                            className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all"
+                            className="object-contain p-20 transition-all duration-500 group-hover:scale-105"
                             onError={(e) => {
                               const target = e.target as any;
-                              target.src = `https://picsum.photos/seed/${link.handle}/100/100`;
+                              target.src = `https://picsum.photos/seed/${link.handle}/800/800`;
                             }}
                           />
                         </div>
-                        <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-white truncate">{link.name}</h4>
-                        <p className="text-xs font-mono text-white/30 truncate">{link.handle}</p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {project.socialManagement && (
-              <div className="space-y-8 pt-12 border-t border-white/5">
-                <div className="space-y-3">
-                  <h2 className="text-3xl font-bold flex items-center gap-4">
-                    <span className="text-primary italic">{getNextNum()}</span> Social Media Management
-                  </h2>
-                  <p className="text-white/40 text-sm italic">Strategic community growth and digital pulse management.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {project.socialManagement.map((link: any, idx: number) => (
-                    <a 
-                      key={`social-${link.handle}-${idx}`}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-pink-500/50 transition-all flex flex-col gap-4"
-                    >
-                      <div className="flex justify-between items-center">
-                        <Instagram className="w-8 h-8 text-pink-500 group-hover:scale-110 transition-transform" />
-                        <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-pink-500" />
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-bold text-white truncate">{link.name}</h4>
-                        <p className="text-sm font-mono text-white/30 truncate">{link.handle}</p>
+                        <div className="flex justify-between items-center px-4">
+                           <div>
+                            <h4 className="text-3xl font-bold text-white truncate group-hover:text-primary transition-colors">{link.name}</h4>
+                            <p className="text-sm font-mono text-white/30 truncate">{link.handle}</p>
+                          </div>
+                          <ExternalLink className="w-6 h-6 text-white/20 group-hover:text-primary transition-colors" />
+                        </div>
                       </div>
                     </a>
                   ))}
@@ -500,6 +631,67 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
               </div>
             )}
           </div>
+
+          {/* Point 03: Tech Stack */}
+          <section ref={techSectionRef} className="relative z-10 py-16 flex flex-col items-center gap-12 overflow-hidden border-t border-white/5">
+            <div className="flex flex-col items-center gap-4 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
+                <Sparkles className="w-3 h-3 fill-primary" />
+                ECOSYSTEM
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight text-white leading-tight text-center">
+                Specialized <span className="text-primary">Tech Stack</span>
+              </h2>
+            </div>
+
+            <div className="relative w-full h-[400px] md:h-[500px]">
+              {/* Mobile Layout: Grid */}
+              <div className="grid grid-cols-3 gap-6 md:hidden px-4">
+                {project.techStack.map((tech: any, idx: number) => (
+                  <div key={`mob-${idx}`} className={cn("flex flex-col items-center gap-2 transition-all duration-700", isTechVisible ? "opacity-100 scale-100" : "opacity-0 scale-0")} style={{ transitionDelay: `${idx * 100}ms` }}>
+                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl flex items-center justify-center p-3">
+                      {tech.icon}
+                    </div>
+                    <span className="text-[8px] font-bold tracking-widest uppercase text-white/40">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop Layout: Absolute Bubbles */}
+              <div className="hidden md:block">
+                {project.techStack.map((tech: any, idx: number) => (
+                  <div
+                    key={`desk-${idx}`}
+                    className={cn(
+                      "absolute transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer",
+                      isTechVisible ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                      hoveredTech !== null && hoveredTech !== tech.name ? "blur-sm opacity-20 scale-90" : "blur-0 opacity-100"
+                    )}
+                    style={{ 
+                      top: tech.top, 
+                      left: tech.left,
+                      transitionDelay: isTechVisible ? `${idx * 200}ms` : '0ms',
+                      zIndex: hoveredTech === tech.name ? 20 : 10
+                    }}
+                    onMouseEnter={() => setHoveredTech(tech.name)}
+                    onMouseLeave={() => setHoveredTech(null)}
+                  >
+                    <div className={cn("animate-float transition-transform duration-300", hoveredTech === tech.name && "scale-125")} style={{ animationDelay: tech.delay }}>
+                      <div className="relative group">
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl flex items-center justify-center p-6 transition-all duration-300 group-hover:bg-white/[0.07] group-hover:border-primary/50 group-hover:shadow-[0_0_40px_rgba(37,99,235,0.25)]">
+                          {tech.icon}
+                        </div>
+                        <div className={cn("absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[11px] font-bold tracking-[0.2em] uppercase text-white/60 transition-all duration-300", hoveredTech === tech.name ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2")}>
+                          {tech.name}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-0 -z-10 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `radial-gradient(circle at center, rgba(37,99,235,0.15) 0%, transparent 70%)` }} />
+            </div>
+          </section>
         </div>
 
         {/* Right Column: Sticky Sidebar (Desktop Only) */}
@@ -514,46 +706,6 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
       <div className="block lg:hidden px-6 max-w-7xl w-full mb-20">
         {SidebarContent}
       </div>
-
-      {/* Technology Ecosystem Section (Final) */}
-      {project.techStack && project.techStack.length > 0 && (
-        <section className="px-6 max-w-7xl w-full mb-32 overflow-hidden py-10 border-t border-white/5">
-          <div className="space-y-16">
-            <div className="flex flex-col items-center gap-4 text-center mt-16">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Technology Ecosystem</h3>
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-8 relative z-10">
-              {project.techStack.map((tech: any, idx: number) => (
-                <div 
-                  key={tech.name}
-                  onMouseEnter={() => setHoveredTech(tech.name)}
-                  onMouseLeave={() => setHoveredTech(null)}
-                  className={cn(
-                    "relative group p-10 rounded-[40px] border border-white/5 bg-white/[0.01] backdrop-blur-3xl flex flex-col items-center gap-6 transition-all duration-500 ease-out animate-float",
-                    hoveredTech !== null && hoveredTech !== tech.name ? "blur-sm opacity-20 scale-90" : "blur-0 opacity-100 scale-100",
-                    hoveredTech === tech.name ? "border-primary/50 bg-white/[0.03] shadow-[0_0_50px_rgba(37,99,235,0.25)]" : ""
-                  )}
-                  style={{ animationDelay: `${idx * 0.2}s` }}
-                >
-                  <div className="w-20 h-20 flex items-center justify-center grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500">
-                    {tech.icon}
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/20 group-hover:text-primary transition-colors">
-                    {tech.name}
-                  </span>
-
-                  {/* Hover Glow */}
-                  {hoveredTech === tech.name && (
-                    <div className="absolute inset-0 -z-10 bg-primary/5 rounded-[40px] blur-2xl animate-pulse" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* CTA Section */}
       <section className="py-24 px-6 max-w-5xl w-full text-center">
