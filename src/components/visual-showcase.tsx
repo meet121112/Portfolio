@@ -70,7 +70,7 @@ function InstagramEmbed({ url }: { url: string }) {
 
 function ReelPlayer({ id }: { id: string }) {
   return (
-    <div className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
+    <div className="relative aspect-[9/16] w-full max-w-[340px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
       <iframe
         src={`https://drive.google.com/file/d/${id}/preview`}
         className="absolute inset-0 w-full h-full border-none opacity-90 group-hover/reel:opacity-100 transition-opacity duration-500"
@@ -202,7 +202,7 @@ export function VisualShowcase() {
                 <PlayCircle className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Specialized Reels</h3>
               </div>
-              <Carousel opts={{ align: "start", loop: true }} className="w-full relative">
+              <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-10">
                 <CarouselContent>
                   {reelDriveIds.map((id, idx) => (
                     <CarouselItem key={`reel-${idx}`}>
@@ -212,10 +212,8 @@ export function VisualShowcase() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <div className="flex justify-center gap-4 mt-8">
-                   <CarouselPrevious className="static translate-y-0 h-10 w-10 bg-white/5 border-white/10 text-white hover:bg-primary transition-all rounded-full" />
-                   <CarouselNext className="static translate-y-0 h-10 w-10 bg-white/5 border-white/10 text-white hover:bg-primary transition-all rounded-full" />
-                </div>
+                <CarouselPrevious className="-left-4 h-10 w-10 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
+                <CarouselNext className="-right-4 h-10 w-10 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
               </Carousel>
             </div>
           </div>
