@@ -8,12 +8,12 @@ const steps = [
   {
     id: '01',
     title: 'Web Designer (Wapzzo)',
-    description: 'Trainee role for 6 Months focused on foundational design principles and initial technical implementations.',
+    description: 'Trainee role for 1 YEAR focused on foundational design principles and initial technical implementations.',
   },
   {
     id: '02',
     title: 'Web Designer (Toshal Infotech)',
-    description: '1 Year role advancing UI/UX expertise and building high-performance responsive interfaces.',
+    description: '11 MONTHS role advancing UI/UX expertise and building high-performance responsive interfaces.',
   },
   {
     id: '03',
@@ -50,10 +50,10 @@ export function Approach() {
     <section 
       id="approach" 
       ref={sectionRef}
-      className="relative z-10 py-24 md:py-32 px-6 max-w-7xl w-full flex flex-col items-center gap-12 overflow-hidden"
+      className="relative z-10 py-16 md:py-20 px-6 max-w-7xl w-full flex flex-col items-center gap-8 overflow-hidden"
     >
       <div className={cn(
-        "flex flex-col items-center gap-4 text-center mb-8 md:mb-12 transition-all duration-[2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex flex-col items-center gap-4 text-center mb-4 transition-all duration-[2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">

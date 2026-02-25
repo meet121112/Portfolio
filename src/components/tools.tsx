@@ -143,7 +143,7 @@ const tools = [
     name: 'WordPress', 
     icon: (
       <svg viewBox="0 0 256 256" className="w-8 h-8">
-        <path d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0zm0 244.1c-18.1 0-35.1-4.6-49.9-12.7l33.8-92.6 24.1 72.3c.3.9.6 1.8.9 2.7-2.8.8-5.8 1.3-8.8 1.3-1.4 0-2.8-.1-4.2-.3l-.3-.1zm-73.4-22.1c-18.1-18.3-29.2-43.5-29.2-71.3 0-11.4 1.9-22.2 5.3-32.3l48.1 131.1c-9.1-8.3-17.3-17.5-24.2-27.5zM128 11.9c18.1 0 35.1 4.6 49.9 12.7l-33.8 92.6-24.1-72.3c-.3-.9-.6-1.8-.9-2.7 2.8-.8 5.8-1.3 8.8-1.3 1.4 0 2.8.1 4.2.3l.3.1zm104.5 116.1c0 11.4-1.9 22.2-5.3 32.3l-48.1-131.1c9.1 8.3 17.3 17.5 24.2 27.5 18.1 18.3 29.2 43.5 29.2 71.3z" fill="#21759b"/>
+        <path d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0zm0 244.1c-18.1 0-35.1-4.6-49.9-12.7l33.8-92.6 24.1 72.3c.3.9.6 1.8.9 2.7-2.8.8-5.8 1.3-8.8 1.3-1.4 0-2.8-.1-4.2-.3l-.3-.1zm-73.4-22.1c-18.1-18.3-29.2-43.5-29.2-71.3 0-11.4 1.9-22.2 5.3-32.3l48.1 131.1c-9.1-8.3-17.3-17.5-24.2-27.5zM128 11.9c18.1 0 35.1 4.6 49.9 12.7l-33.8 92.6-24.1-72.3c-.3-.9-.6-1.8-.9-2.7 2.8-.8 5.8-1.3 8.8-1.3 1.4 0-2.8.1 4.2.3l.3.1zm104.5 116.1c0 11.4-1.9 22.2-5.3 32.3l-48.1-131.1c9.1 8.3 17.3 17.5 24.2 27.5 18.1 18.3 29.2 43.5 29.2 71.3z" fill="#21759b"/>
         <path d="M168.1 128.1c0-13.4-4.8-22.6-8.9-31.1-5.5-8.2-10.6-15.1-10.6-23.3 0-9.6 7.2-18.5 17.5-18.5 1.1 0 2.1.1 3.1.3-12.8-10.4-29.2-16.6-47.1-16.6-21.2 0-40.1 8.7-53.8 22.7 1.4.1 2.7.1 3.8.1 10.3 0 26.2-1.2 26.2-1.2 5.1-.3 5.8 7.2.7 7.9 0 0-5.2.6-11 1l35 104.3 21-63.1-14.9-41.2c-5.1-.4-9.9-1-9.9-1-5.1-.3-4.5-7.9.7-7.9 0 0 16.3 1.2 26.2 1.2 10.3 0 26.2-1.2 26.2-1.2 5.1-.3 5.8 7.2.7 7.9 0 0-5.2.6-11 1l34.7 103.2 9.6-31.9c3.8-11.1 6.7-19.2 6.7-26.1z" fill="#fff"/>
       </svg>
     ), 
@@ -174,8 +174,8 @@ export function Tools() {
   }, []);
 
   return (
-    <section id="tools" ref={sectionRef} className="relative z-10 py-16 px-6 max-w-7xl w-full flex flex-col items-center gap-16 overflow-hidden">
-      <div className="flex flex-col items-center gap-4 text-center mb-12">
+    <section id="tools" ref={sectionRef} className="relative z-10 py-8 px-6 max-w-7xl w-full flex flex-col items-center gap-10 overflow-hidden">
+      <div className="flex flex-col items-center gap-4 text-center mb-4">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
           <Sparkles className="w-3 h-3 fill-primary" />
           TECH STACK
@@ -187,7 +187,7 @@ export function Tools() {
       </div>
 
       {/* Responsive Grid for Mobile, Absolute for Desktop */}
-      <div className="relative w-full h-auto md:h-[700px]">
+      <div className="relative w-full h-auto md:h-[550px]">
         {/* Mobile Layout: Grid */}
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 md:hidden">
            {tools.map((tool, idx) => (

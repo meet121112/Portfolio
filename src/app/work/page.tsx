@@ -52,7 +52,7 @@ export default function WorkPage() {
       <Navbar />
       
       {/* Header */}
-      <section className="pt-40 pb-16 px-6 max-w-7xl w-full text-center">
+      <section className="pt-32 pb-12 px-6 max-w-7xl w-full text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-8 slide-up">
           <Sparkles className="w-3 h-3 fill-primary" />
           FEATURED WORK
@@ -66,7 +66,7 @@ export default function WorkPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16 px-6 max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+      <section className="py-12 px-6 max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {projects.map((project, i) => (
           <Link 
             key={project.id} 
@@ -121,7 +121,7 @@ export default function WorkPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 max-w-4xl w-full text-center">
+      <section className="py-16 px-6 max-w-4xl w-full text-center">
         <div className="p-16 rounded-[60px] bg-gradient-to-br from-primary/10 via-transparent to-accent/5 border border-white/10 relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">Have a vision?</h2>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Mail, ArrowUpRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -15,6 +15,7 @@ export function Footer() {
   const socialLinks = [
     { name: 'LinkedIn', icon: <Linkedin className="w-4 h-4" />, href: 'https://www.linkedin.com/in/patelmeetk/' },
     { name: 'Email', icon: <Mail className="w-4 h-4" />, href: 'mailto:meet121112@gmail.com' },
+    { name: 'Phone', icon: <Phone className="w-4 h-4" />, href: 'tel:+13653562299' },
   ];
 
   const quickLinks = [
@@ -47,7 +48,7 @@ export function Footer() {
               </p>
             </div>
             <Link href="/contact">
-              <Button className="h-14 px-8 rounded-2xl bg-white text-black hover:bg-white/90 transition-all font-semibold flex gap-2 group">
+              <Button className="h-14 px-8 rounded-2xl bg-white text-black hover:bg-white/90 transition-all font-semibold flex gap-2 group mt-4">
                 Get In Touch
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>

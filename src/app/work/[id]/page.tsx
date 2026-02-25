@@ -20,7 +20,10 @@ import {
   ShieldCheck,
   Video,
   Type,
-  FileText
+  FileText,
+  BarChart3,
+  CalendarDays,
+  Users
 } from 'lucide-react';
 import LinkComponent from 'next/link';
 import Image from 'next/image';
@@ -47,20 +50,9 @@ declare global {
  */
 function InstagramPost({ url }: { url: string }) {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (!window.instgrm) {
-        const script = document.createElement('script');
-        script.src = 'https://www.instagram.com/embed.js';
-        script.async = true;
-        document.body.appendChild(script);
-      } else {
-        const timer = setTimeout(() => {
-          if (window.instgrm && window.instgrm.Embeds) {
-            window.instgrm.Embeds.process();
-          }
-        }, 500);
-        return () => clearTimeout(timer);
-      }
+    // Rely on global script in layout.tsx to reduce re-injection noise
+    if (typeof window !== 'undefined' && window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
     }
   }, [url]);
 
@@ -170,29 +162,29 @@ const TechIcons = {
 
 const projectDetails: Record<string, any> = {
   'specialty-01': {
-    title: 'Brand Identity & Strategic Content',
+    title: 'Visual Asset Design & Strategic Content',
     category: 'Specialty',
     icon: <Palette className="w-12 h-12 text-primary" />,
-    description: 'Developing high-impact visual systems and crafting strategic content that resonates across web and social ecosystems.',
-    challenge: 'Businesses often struggle to maintain visual consistency and a compelling narrative voice across diverse marketing channels.',
-    solution: 'A holistic framework for brand evolution that pairs robust visual identities with conversion-driven content writing for websites and professional marketing copy for LinkedIn and Instagram.',
-    tags: ['Brand Strategy', 'Visual Design', 'Content Writing', 'Copywriting', 'Social Marketing', 'Logo Design', 'Motion Graphics'],
+    description: 'Designing high-quality visual assets for digital campaigns and managing multi-channel social media calendars to drive year-over-year engagement growth.',
+    challenge: 'Enterprises often struggle with maintaining visual consistency, social media relevance, and data-driven content adaptation across diverse marketing channels.',
+    solution: 'A holistic framework for brand evolution that pairs robust visual identity with end-to-end social media management, including trend monitoring, metric reporting, and cross-functional creative reviews.',
+    tags: ['Brand Strategy', 'Visual Design', 'Social Calendar', 'Metric Reporting', 'Vendor Coordination', 'Motion Snippets'],
     techStack: [
       { name: 'Illustrator', icon: TechIcons.Illustrator, top: '25%', left: '15%', delay: '0s' },
       { name: 'Canva', icon: TechIcons.Canva, top: '45%', left: '35%', delay: '1.2s' },
       { name: 'Figma', icon: TechIcons.Figma, top: '15%', left: '60%', delay: '0.5s' }
     ],
     metrics: [
-      { label: 'Brand Consistency', value: '98%' },
-      { label: 'Content Engagement', value: '+120%' },
-      { label: 'Social Reach', value: 'High' }
+      { label: 'Asset Consistency', value: '100%' },
+      { label: 'Engagement Growth', value: 'YoY Focus' },
+      { label: 'Metric Reporting', value: 'Weekly' }
     ],
     visualIdentity: [
-      { name: 'ECC Education Group', handle: 'eccedugroup.com', url: 'https://eccedugroup.com', logo: 'https://eccedugroup.com/logo.png' },
-      { name: 'RJ Global Hiring', handle: 'rjglobalhiring.ca', url: 'https://rjglobalhiring.ca', logo: 'https://rjglobalhiring.ca/logo.png' },
-      { name: 'Royal Kitchen Countertop', handle: 'royalkitchencountertop.ca', url: 'https://royalkitchencountertop.ca', logo: 'https://royalkitchencountertop.ca/wp-content/uploads/2025/08/cropped-RKC_logo-1.png' },
-      { name: 'TNASS', handle: 'tnass.com', url: 'https://tnass.com', logo: 'https://tnass.com/logo.png' },
-      { name: 'Technology Solution', handle: 'technologysolution.ca', url: 'https://technologysolution.ca', logo: 'https://technologysolution.ca/logo.png' }
+      { name: 'ECC Education Group', handle: 'eccedugroup.com', url: 'https://eccedugroup.com', logo: 'https://eccedugroup.com/logo.png', bgColor: 'bg-white' },
+      { name: 'RJ Global Hiring', handle: 'rjglobalhiring.ca', url: 'https://rjglobalhiring.ca', logo: 'https://rjglobalhiring.ca/logo.png', bgColor: 'bg-white' },
+      { name: 'Royal Kitchen Countertop', handle: 'royalkitchencountertop.ca', url: 'https://royalkitchencountertop.ca', logo: 'https://royalkitchencountertop.ca/wp-content/uploads/2025/08/cropped-RKC_logo-1.png', bgColor: 'bg-zinc-950' },
+      { name: 'TNASS', handle: 'tnass.com', url: 'https://tnass.com', logo: 'https://tnass.com/logo.png', bgColor: 'bg-white' },
+      { name: 'Technology Solution', handle: 'technologysolution.ca', url: 'https://technologysolution.ca', logo: 'https://technologysolution.ca/logo.png', bgColor: 'bg-white' }
     ],
     instagramPosts: [
       'https://www.instagram.com/p/DG1tdotPcPo/',
@@ -217,46 +209,46 @@ const projectDetails: Record<string, any> = {
       'https://www.instagram.com/reel/DKNwA0JRqlW/'
     ],
     features: [
-      { title: 'Logo Systems', icon: <Palette className="w-6 h-6" />, desc: 'Scalable, multi-format brand foundations.' },
-      { title: 'Strategic Copy', icon: <FileText className="w-6 h-6" />, desc: 'Compelling writing for websites and social platforms.' },
-      { title: 'Dynamic Content', icon: <Video className="w-6 h-6" />, desc: 'High-impact motion and video sequences.' },
-      { title: 'Social Strategy', icon: <Share2 className="w-6 h-6" />, desc: 'Engagement-driven marketing for LinkedIn & IG.' }
+      { title: 'Campaign Assets', icon: <Palette className="w-6 h-6" />, desc: 'High-quality visual production for social, print, and advertisements.' },
+      { title: 'Social Calendar', icon: <CalendarDays className="w-6 h-6" />, desc: 'Managing and organizing end-to-end multi-channel social strategy.' },
+      { title: 'Metric Reporting', icon: <BarChart3 className="w-6 h-6" />, desc: 'Reporting on engagement data to ensure year-over-year growth.' },
+      { title: 'Vendor Coordination', icon: <Users className="w-6 h-6" />, desc: 'Seamlessly managing external vendors and procurement processes.' }
     ]
   },
   'specialty-02': {
     title: 'UX/UI Interface Strategy',
     category: 'Specialty',
     icon: <Layout className="w-12 h-12 text-primary" />,
-    description: 'Architecting user journeys that are both psychologically intuitive and strategically aligned with business goals.',
-    challenge: 'Complex technical requirements often lead to cluttered interfaces that confuse users and decrease conversion rates.',
-    solution: 'Friction-less design patterns based on user behavior data and cognitive psychology.',
-    tags: ['UI Design', 'UX Research', 'Prototyping', 'User Psychology'],
+    description: 'Architecting digital-first user journeys aligned with performance data and business growth metrics.',
+    challenge: 'Translating complex performance data into intuitive interfaces that support marketing goals and project deliverables.',
+    solution: 'Friction-less design patterns and digital-first content (graphics, motion snippets) created in collaboration with leadership and performance teams.',
+    tags: ['UI Design', 'UX Research', 'Performance Data', 'Digital-First Strategy'],
     techStack: [
       { name: 'Figma', icon: TechIcons.Figma, top: '25%', left: '20%', delay: '0s' },
       { name: 'React', icon: TechIcons.React, top: '45%', left: '50%', delay: '1.2s' }
     ],
     metrics: [
-      { label: 'User Friction', value: '-45%' },
-      { label: 'Task Success', value: '92%' },
+      { label: 'Data Alignment', value: '100%' },
+      { label: 'Performance Gain', value: '+45%' },
       { label: 'Design Velocity', value: 'High' }
     ],
     designProjects: [
       { name: 'Career Compass', handle: 'Figma Design', url: 'https://www.figma.com/design/IAFPf5jW6EpRclaHdFCX77/Career-Compass?node-id=0-1&t=Dw5ZBybyqEGACHIi-1' }
     ],
     features: [
-      { title: 'Wireframing', icon: <Layout className="w-6 h-6" />, desc: 'Low-fidelity structural blueprints.' },
-      { title: 'Prototyping', icon: <Framer className="w-6 h-6" />, desc: 'High-fidelity interactive simulations.' },
-      { title: 'User Research', icon: <Cpu className="w-6 h-6" />, desc: 'Data-driven behavioral analysis.' }
+      { title: 'Digital-First Content', icon: <Video className="w-6 h-6" />, desc: 'Motion snippets and social graphics created for high impact.' },
+      { title: 'Data Collaboration', icon: <BarChart3 className="w-6 h-6" />, desc: 'Reviewing creative based on rigorous performance data analysis.' },
+      { title: 'Brand Adherence', icon: <ShieldCheck className="w-6 h-6" />, desc: 'Maintaining consistency across all digital-first creative assets.' }
     ]
   },
   'specialty-03': {
     title: 'Full-Stack Web Development',
     category: 'Specialty',
     icon: <Code2 className="w-12 h-12 text-primary" />,
-    description: 'Building high-performance, scalable web applications that serve as the technical backbone of success.',
-    challenge: 'Modern web environments require a balance of speed, SEO optimization, and rich interactivity.',
-    solution: 'Next-generation tech stacks like Next.js and React, integrated with robust backend services.',
-    tags: ['Next.js', 'React', 'TypeScript', 'WordPress', 'Cloud Architecture'],
+    description: 'Building high-performance digital platforms that support marketing procurement and enterprise-level scale.',
+    challenge: 'Modern web environments require a balance of speed, technical precision, and operational management.',
+    solution: 'Next-generation tech stacks integrated with workflow tools for invoice processing, purchase orders, and special project support.',
+    tags: ['Next.js', 'React', 'Operational Ops', 'Cloud Architecture'],
     techStack: [
       { name: 'Next.js', icon: TechIcons.Nextjs, top: '20%', left: '15%', delay: '0s' },
       { name: 'React', icon: TechIcons.React, top: '45%', left: '35%', delay: '1.2s' },
@@ -265,9 +257,9 @@ const projectDetails: Record<string, any> = {
       { name: 'MongoDB', icon: TechIcons.MongoDB, top: '55%', left: '75%', delay: '0.8s' }
     ],
     metrics: [
-      { label: 'Page Speed', value: 'Sub-1s' },
-      { label: 'SEO Score', value: '95+' },
-      { label: 'Uptime', value: '99.9%' }
+      { label: 'Deployment Speed', value: 'Rapid' },
+      { label: 'System Uptime', value: '99.99%' },
+      { label: 'Ops Efficiency', value: 'High' }
     ],
     webDevelopment: [
       { name: 'Technology Solution', handle: 'technologysolution.ca', url: 'https://technologysolution.ca' },
@@ -277,41 +269,39 @@ const projectDetails: Record<string, any> = {
       { name: 'TNASS', handle: 'tnass.com', url: 'https://tnass.com' }
     ],
     features: [
-      { title: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'Responsive and fast React interfaces.' },
-      { title: 'Backend', icon: <Cpu className="w-6 h-6" />, desc: 'Scalable Node.js API architecture.' },
-      { title: 'WordPress', icon: TechIcons.WordPress, desc: 'Custom CMS and plugin development.' },
-      { title: 'Database', icon: <Layers className="w-6 h-6" />, desc: 'Robust data management with MongoDB.' }
+      { title: 'Strategic Ops', icon: <Layers className="w-6 h-6" />, desc: 'Supporting procurement and invoicing workflows within digital platforms.' },
+      { title: 'Metric Integration', icon: <BarChart3 className="w-6 h-6" />, desc: 'Direct reporting of engagement and performance data via web UI.' }
     ]
   },
   'specialty-04': {
     title: 'Native Windows Architecture',
     category: 'Specialty',
     icon: <AppWindow className="w-12 h-12 text-primary" />,
-    description: 'Creating high-performance desktop tools for specialized orchestration workflows.',
-    challenge: 'Web apps can sometimes lack the deep OS integration needed for intensive automation tasks.',
-    solution: 'Native desktop environments built with Python for maximum performance and stability.',
-    tags: ['Python', 'C#', '.NET', 'Native UI', 'System Orchestration'],
+    description: 'Creating high-performance desktop tools for specialized orchestration and digital screen management.',
+    challenge: 'Scheduling and uploading content for digital screens across a network requires direct system hooks.',
+    solution: 'Native desktop environments built with Python to handle automation, content scheduling, and hardware UI.',
+    tags: ['Python', 'Automation', 'Digital Screens', 'System Orchestration'],
     techStack: [
       { name: 'Python', icon: TechIcons.Python, top: '40%', left: '40%', delay: '0s' }
     ],
     metrics: [
       { label: 'Execution Speed', value: 'Native' },
-      { label: 'OS Integration', value: '100%' },
-      { label: 'Resource Usage', value: 'Optimized' }
+      { label: 'Uptime', value: '100%' },
+      { label: 'Automation', value: '100%' }
     ],
     features: [
-      { title: 'Native UI', icon: <AppWindow className="w-6 h-6" />, desc: 'Desktop-grade interface performance.' },
-      { title: 'Automation', icon: <Cpu className="w-6 h-6" />, desc: 'Direct OS-level system hooks.' }
+      { title: 'Digital Screens', icon: <Layout className="w-6 h-6" />, desc: 'Scheduling and uploading visual content for native displays.' },
+      { title: 'Process Automation', icon: <Cpu className="w-6 h-6" />, desc: 'Direct OS-level system hooks for marketing automation.' }
     ]
   },
   'specialty-05': {
     title: 'Cloud & Infrastructure Orchestration',
     category: 'Specialty',
     icon: <Server className="w-12 h-12 text-primary" />,
-    description: 'Designing and managing secure, scalable cloud environments with a focus on high availability and automated security.',
-    challenge: 'Standard hosting solutions often lack the fine-grained control and security automation required for production-grade performance.',
-    solution: 'Leveraging AWS EC2 for compute, Nginx for sophisticated request routing, and Win-ACME for hands-free SSL lifecycle management.',
-    tags: ['AWS EC2', 'Nginx', 'Win-ACME', 'SSL/TLS', 'DevOps', 'Infrastructure'],
+    description: 'Designing and managing secure, scalable cloud environments with a focus on marketing deliverable execution.',
+    challenge: 'High-traffic marketing campaigns require robust infrastructure and automated security to maintain brand integrity.',
+    solution: 'Leveraging AWS EC2 and sophisticated proxies to ensure zero downtime for critical social and web assets.',
+    tags: ['AWS EC2', 'Nginx', 'Infrastructure', 'Marketing Deliverables'],
     techStack: [
       { name: 'AWS EC2', icon: <Cpu className="w-full h-full text-white" />, top: '25%', left: '15%', delay: '0s' },
       { name: 'Nginx', icon: <Layers className="w-full h-full text-white" />, top: '45%', left: '35%', delay: '1.2s' },
@@ -320,12 +310,11 @@ const projectDetails: Record<string, any> = {
     metrics: [
       { label: 'Security Score', value: 'A+' },
       { label: 'Uptime SLA', value: '99.99%' },
-      { label: 'SSL Automation', value: '100%' }
+      { label: 'SLA Fulfillment', value: '100%' }
     ],
     features: [
-      { title: 'Server Provisioning', icon: <Cpu className="w-6 h-6" />, desc: 'Custom EC2 instance optimization.' },
-      { title: 'Reverse Proxy', icon: <Layers className="w-6 h-6" />, desc: 'High-speed routing with Nginx.' },
-      { title: 'Automated SSL', icon: <ShieldCheck className="w-6 h-6" />, desc: 'Cert management via Win-ACME.' }
+      { title: 'SLA Management', icon: <ShieldCheck className="w-6 h-6" />, desc: 'Ensuring 99.9% uptime for all high-value marketing assets.' },
+      { title: 'Infrastructure', icon: <Server className="w-6 h-6" />, desc: 'High-performance orchestration for enterprise scale.' }
     ]
   },
 };
@@ -360,8 +349,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
   };
 
   const SidebarContent = (
-    <div className="space-y-10">
-      <div className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 space-y-8">
+    <div className="space-y-8">
+      <div className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 space-y-6">
         <h3 className="text-sm font-bold uppercase tracking-widest text-white/30">Skills & Focus</h3>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag: string) => (
@@ -373,7 +362,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
       </div>
 
       {project.metrics && project.metrics.length > 0 && (
-        <div className="p-8 rounded-[32px] border border-primary/20 bg-primary/5 space-y-6">
+        <div className="p-8 rounded-[32px] border border-primary/20 bg-primary/5 space-y-5">
           <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Key Metrics</h3>
           <div className="space-y-4">
             {project.metrics.map((metric: any, idx: number) => (
@@ -400,15 +389,15 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-40 pb-8 px-6 max-w-7xl w-full">
-        <div className="flex flex-col gap-8">
+      <section className="pt-32 pb-4 px-6 max-w-7xl w-full">
+        <div className="flex flex-col gap-6">
           <LinkComponent href="/work" className="inline-flex items-center gap-2 text-white/40 hover:text-primary transition-colors text-xs font-bold uppercase tracking-[0.2em] group">
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             Back to all work
           </LinkComponent>
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
                 <Sparkles className="w-3 h-3 fill-primary" />
                 {project.category}
@@ -421,7 +410,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
               </p>
             </div>
             {project.icon && (
-              <div className="w-24 h-24 rounded-3xl bg-primary/5 border border-primary/20 flex items-center justify-center animate-pulse">
+              <div className="w-20 h-20 rounded-3xl bg-primary/5 border border-primary/20 flex items-center justify-center animate-pulse shrink-0">
                 {project.icon}
               </div>
             )}
@@ -430,10 +419,10 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
       </section>
 
       {/* Main Grid: Content + Sidebar */}
-      <section className="px-6 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20 pb-32">
+      <section className="px-6 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 pb-16">
         
         {/* Left Column: Flowing Content */}
-        <div className="lg:col-span-2 space-y-12">
+        <div className="lg:col-span-2 space-y-10">
           
           {/* Specialty Features (Intro Cards) */}
           {project.features && project.features.length > 0 && (
@@ -451,7 +440,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
           )}
 
           {/* Point 01: The Challenge */}
-          <div className="space-y-6 pt-12 border-t border-white/5">
+          <div className="space-y-4 pt-10 border-t border-white/5">
             <h2 className="text-3xl font-bold flex items-center gap-4">
               <span className="text-primary italic">{getNextNum()}</span> The Challenge
             </h2>
@@ -461,7 +450,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
           </div>
 
           {/* Point 02: The Solution */}
-          <div className="space-y-6 pt-12 border-t border-white/5">
+          <div className="space-y-4 pt-10 border-t border-white/5">
             <h2 className="text-3xl font-bold flex items-center gap-4">
               <span className="text-primary italic">{getNextNum()}</span> The Solution
             </h2>
@@ -472,14 +461,14 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
 
           {/* Instagram Carousels Showcase */}
           {project.instagramPosts && (
-            <div className="space-y-16 pt-12 border-t border-white/5">
+            <div className="space-y-12 pt-10 border-t border-white/5">
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold flex items-center gap-4">
                   <span className="text-primary italic">{getNextNum()}</span> Brand Identity & Content
                 </h2>
                 <p className="text-white/40 text-sm italic">Strategic visual storytelling and strategic content evolution for websites, LinkedIn, and Instagram.</p>
                 
-                <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-12">
                   <CarouselContent className="-ml-4">
                     {project.instagramPosts.map((url: string, idx: number) => (
                       <CarouselItem key={`post-${idx}`} className="pl-4 basis-full sm:basis-1/2">
@@ -487,10 +476,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <div className="flex justify-end gap-2 mt-4">
-                    <CarouselPrevious className="static translate-y-0" />
-                    <CarouselNext className="static translate-y-0" />
-                  </div>
+                  <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
+                  <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
                 </Carousel>
               </div>
 
@@ -501,7 +488,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                   </h2>
                   <p className="text-white/40 text-sm">High-impact dynamic media and motion sequences.</p>
                   
-                  <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                  <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-12">
                     <CarouselContent className="-ml-4">
                       {project.motionGraphics.map((url: string, idx: number) => (
                         <CarouselItem key={`motion-${idx}`} className="pl-4 basis-full sm:basis-1/2">
@@ -509,10 +496,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <div className="flex justify-end gap-2 mt-4">
-                      <CarouselPrevious className="static translate-y-0" />
-                      <CarouselNext className="static translate-y-0" />
-                    </div>
+                    <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
+                    <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
                   </Carousel>
                 </div>
               )}
@@ -520,10 +505,10 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
           )}
 
           {/* Real-World Execution Lists (Dynamic Steps) */}
-          <div className="space-y-12">
+          <div className="space-y-10">
             {project.designProjects && (
-              <div className="space-y-8 pt-12 border-t border-white/5">
-                <div className="space-y-3">
+              <div className="space-y-6 pt-10 border-t border-white/5">
+                <div className="space-y-2">
                   <h2 className="text-3xl font-bold flex items-center gap-4">
                     <span className="text-primary italic">{getNextNum()}</span> UI/UX Design Projects
                   </h2>
@@ -555,8 +540,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
             )}
 
             {project.webDevelopment && (
-              <div className="space-y-8 pt-12 border-t border-white/5">
-                <div className="space-y-3">
+              <div className="space-y-6 pt-10 border-t border-white/5">
+                <div className="space-y-2">
                   <h2 className="text-3xl font-bold flex items-center gap-4">
                     <span className="text-primary italic">{getNextNum()}</span> Web Development Projects
                   </h2>
@@ -588,8 +573,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
             )}
 
             {project.visualIdentity && (
-              <div className="space-y-8 pt-12 border-t border-white/5">
-                <div className="space-y-3">
+              <div className="space-y-6 pt-10 border-t border-white/5">
+                <div className="space-y-2">
                   <h2 className="text-3xl font-bold flex items-center gap-4">
                     <span className="text-primary italic">{getNextNum()}</span> Logo & Visual Identity
                   </h2>
@@ -605,7 +590,10 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                       className="group p-10 rounded-[48px] bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all flex flex-col gap-6"
                     >
                       <div className="flex flex-col gap-6">
-                        <div className="relative w-full h-[300px] md:h-[400px] bg-zinc-950 rounded-[48px] overflow-hidden flex items-center justify-center border border-white/10 group-hover:bg-zinc-900 transition-all">
+                        <div className={cn(
+                          "relative w-full h-[300px] md:h-[400px] rounded-[48px] overflow-hidden flex items-center justify-center border border-white/10 group-hover:opacity-90 transition-all",
+                          link.bgColor || "bg-zinc-950"
+                        )}>
                           <Image 
                             src={link.logo || `https://picsum.photos/seed/${link.handle}/800/800`} 
                             alt={`${link.name} Logo`}
@@ -633,7 +621,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
           </div>
 
           {/* Point 03: Tech Stack */}
-          <section ref={techSectionRef} className="relative z-10 py-16 flex flex-col items-center gap-12 overflow-hidden border-t border-white/5">
+          <section ref={techSectionRef} className="relative z-10 py-12 flex flex-col items-center gap-10 overflow-hidden border-t border-white/5">
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
                 <Sparkles className="w-3 h-3 fill-primary" />
@@ -644,7 +632,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
               </h2>
             </div>
 
-            <div className="relative w-full h-[400px] md:h-[500px]">
+            <div className="relative w-full h-[350px] md:h-[450px]">
               {/* Mobile Layout: Grid */}
               <div className="grid grid-cols-3 gap-6 md:hidden px-4">
                 {project.techStack.map((tech: any, idx: number) => (
@@ -696,22 +684,22 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
 
         {/* Right Column: Sticky Sidebar (Desktop Only) */}
         <aside className="hidden lg:block relative">
-          <div className="sticky top-32 space-y-10">
+          <div className="sticky top-32 space-y-8">
             {SidebarContent}
           </div>
         </aside>
       </section>
 
       {/* Mobile Sidebar (Appears after content) */}
-      <div className="block lg:hidden px-6 max-w-7xl w-full mb-20">
+      <div className="block lg:hidden px-6 max-w-7xl w-full mb-16">
         {SidebarContent}
       </div>
 
       {/* CTA Section */}
-      <section className="py-24 px-6 max-w-5xl w-full text-center">
-        <div className="p-16 rounded-[60px] bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to evolve your project?</h2>
-          <p className="text-white/50 text-xl mb-12 max-w-2xl mx-auto">
+      <section className="py-16 px-6 max-w-5xl w-full text-center">
+        <div className="p-12 rounded-[60px] bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">Ready to evolve your project?</h2>
+          <p className="text-white/50 text-xl mb-10 max-w-2xl mx-auto">
             Let&apos;s apply these frameworks to your unique business challenges.
           </p>
           <LinkComponent href="/contact">

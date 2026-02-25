@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -23,6 +24,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        {/* Global Instagram Embed Script - Loaded once with lazyOnload to prevent hydration/unload noise */}
+        <Script 
+          src="https://www.instagram.com/embed.js" 
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
