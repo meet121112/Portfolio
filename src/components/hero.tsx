@@ -8,10 +8,10 @@ import { cn } from '@/lib/utils';
 
 export function Hero() {
   return (
-    <section id="home" className="relative z-10 max-w-5xl w-full flex flex-col items-center justify-center gap-10 px-6 min-h-screen pt-20">
-      <div className="space-y-8 text-center">
+    <section id="home" className="relative z-10 max-w-5xl w-full flex flex-col items-center justify-center gap-8 px-6 min-h-[75vh] pt-16">
+      <div className="space-y-6 text-center">
         {/* Animated Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-4 slide-up opacity-0" style={{ animationFillMode: 'forwards' }}>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-2 slide-up opacity-0" style={{ animationFillMode: 'forwards' }}>
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -20,7 +20,7 @@ export function Hero() {
         </div>
 
         {/* Animated Heading */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <h1 
             className="text-6xl md:text-9xl font-bold tracking-tight leading-[1] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 slide-up opacity-0" 
             style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
@@ -46,7 +46,7 @@ export function Hero() {
 
       {/* Animated Actions */}
       <div 
-        className="flex flex-col sm:flex-row items-center gap-6 mt-4 slide-up opacity-0" 
+        className="flex flex-col sm:flex-row items-center gap-6 slide-up opacity-0" 
         style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}
       >
         <Link href="/work">

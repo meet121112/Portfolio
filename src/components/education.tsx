@@ -52,10 +52,10 @@ export function Education() {
     <section 
       id="education" 
       ref={sectionRef}
-      className="relative z-10 py-32 px-6 max-w-7xl w-full flex flex-col items-center gap-16 overflow-hidden"
+      className="relative z-10 py-12 px-6 max-w-7xl w-full flex flex-col items-center gap-10 overflow-hidden"
     >
       <div className={cn(
-        "flex flex-col items-center gap-6 text-center mb-12 transition-all duration-1000 ease-out",
+        "flex flex-col items-center gap-4 text-center mb-2 transition-all duration-1000 ease-out",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
@@ -79,7 +79,7 @@ export function Education() {
             key={item.id}
             href={`/about#education-${item.id}`}
             className={cn(
-              "group relative p-10 rounded-[40px] border border-white/10 border-dashed bg-white/[0.01] flex flex-col justify-between min-h-[440px] h-full cursor-pointer transition-all duration-1000 ease-out",
+              "group relative p-8 md:p-10 rounded-[40px] border border-white/10 border-dashed bg-white/[0.01] flex flex-col justify-between min-h-[380px] h-full cursor-pointer transition-all duration-1000 ease-out",
               isVisible 
                 ? "opacity-100 translate-x-0" 
                 : "opacity-0 -translate-x-20",
@@ -104,7 +104,7 @@ export function Education() {
               </p>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-white/5 flex justify-between items-center">
+            <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-primary tracking-[0.2em] uppercase">
                   {item.label}

@@ -71,8 +71,8 @@ export function LiveProjects() {
   const marqueeItems = [...projects, ...projects, ...projects];
 
   return (
-    <section id="live-projects" className="relative z-10 py-24 overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col items-center text-center">
+    <section id="live-projects" className="relative z-10 py-16 overflow-hidden border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col items-center text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-6">
           <Sparkles className="w-3 h-3 fill-primary" />
           LIVE ECOSYSTEM

@@ -22,21 +22,19 @@ import {
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
+// Declare global for Instagram script to prevent TypeScript errors
+declare global {
+  interface Window {
+    instgrm: any;
+  }
+}
+
 // Instagram Embed Component
 function InstagramEmbed({ url }: { url: string }) {
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (!window.instgrm) {
-        const script = document.createElement('script');
-        script.src = 'https://www.instagram.com/embed.js';
-        script.async = true;
-        document.body.appendChild(script);
-      } else if (window.instgrm.Embeds) {
-        const timer = setTimeout(() => {
-          window.instgrm.Embeds.process();
-        }, 500);
-        return () => clearTimeout(timer);
-      }
+    // Rely on global script in layout.tsx to reduce re-injection noise
+    if (typeof window !== 'undefined' && window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
     }
   }, [url]);
 
@@ -74,9 +72,24 @@ const websites = [
 ];
 
 const featuredLogos = [
-  { name: 'ECC Education Group', handle: 'ecc-logo', logo: 'https://eccedugroup.com/logo.png' },
-  { name: 'RJ Global Hiring', handle: 'rj-logo', logo: 'https://rjglobalhiring.ca/logo.png' },
-  { name: 'Royal Kitchen Countertop', handle: 'rkc-logo', logo: 'https://royalkitchencountertop.ca/wp-content/uploads/2025/08/cropped-RKC_logo-1.png' },
+  { 
+    name: 'ECC Education Group', 
+    handle: 'ecc-logo', 
+    logo: 'https://eccedugroup.com/logo.png',
+    bgColor: 'bg-white'
+  },
+  { 
+    name: 'RJ Global Hiring', 
+    handle: 'rj-logo', 
+    logo: 'https://rjglobalhiring.ca/logo.png',
+    bgColor: 'bg-white'
+  },
+  { 
+    name: 'Royal Kitchen Countertop', 
+    handle: 'rkc-logo', 
+    logo: 'https://royalkitchencountertop.ca/wp-content/uploads/2025/08/cropped-RKC_logo-1.png',
+    bgColor: 'bg-zinc-950'
+  },
 ];
 
 const posts = [
@@ -102,7 +115,7 @@ const posts = [
 
 export function VisualShowcase() {
   return (
-    <section className="relative z-10 py-32 px-6 max-w-7xl w-full flex flex-col items-center gap-20">
+    <section className="relative z-10 py-12 px-6 max-w-7xl w-full flex flex-col items-center gap-10">
       <div className="flex flex-col items-center gap-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
           <Sparkles className="w-3 h-3 fill-primary" />
@@ -111,14 +124,14 @@ export function VisualShowcase() {
         <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-white leading-tight">
           Visual <span className="text-primary italic">Execution</span>.
         </h2>
-        <p className="text-white/40 max-w-2xl text-lg mt-4">
+        <p className="text-white/40 max-w-2xl text-lg">
           A curated selection of live platforms, brand identities, and strategic motion content engineered for enterprise growth.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full items-start">
         {/* Websites Column */}
-        <div className="space-y-8 lg:sticky lg:top-32">
+        <div className="space-y-6 lg:col-span-3 lg:sticky lg:top-32 order-2 lg:order-1">
           <div className="flex items-center gap-3 px-2">
             <Globe className="w-5 h-5 text-primary" />
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white/30">Live Platforms</h3>
@@ -133,8 +146,8 @@ export function VisualShowcase() {
                 className="group p-6 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all flex items-center justify-between"
               >
                 <div>
-                  <h4 className="font-bold text-white group-hover:text-primary transition-colors">{site.name}</h4>
-                  <p className="text-[10px] font-mono text-white/30 uppercase mt-1">{site.handle}</p>
+                  <h4 className="font-bold text-white group-hover:text-primary transition-colors text-sm">{site.name}</h4>
+                  <p className="text-[9px] font-mono text-white/30 uppercase mt-1">{site.handle}</p>
                 </div>
                 <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-primary transition-all" />
               </a>
@@ -143,13 +156,13 @@ export function VisualShowcase() {
         </div>
 
         {/* Strategic Content Carousel Column */}
-        <div className="space-y-8 lg:col-span-1">
+        <div className="space-y-6 lg:col-span-6 order-1 lg:order-2">
           <div className="flex items-center gap-3 px-2">
             <Instagram className="w-5 h-5 text-primary" />
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white/30">Mixed Strategy Feed</h3>
           </div>
           <div className="relative w-full">
-            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+            <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-12">
               <CarouselContent>
                 {posts.map((url, idx) => (
                   <CarouselItem key={idx}>
@@ -165,16 +178,14 @@ export function VisualShowcase() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex justify-center gap-4 mt-8">
-                <CarouselPrevious className="static translate-y-0" />
-                <CarouselNext className="static translate-y-0" />
-              </div>
+              <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
+              <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
             </Carousel>
           </div>
         </div>
 
         {/* Logos Column */}
-        <div className="space-y-8 lg:sticky lg:top-32">
+        <div className="space-y-6 lg:col-span-3 lg:sticky lg:top-32 order-3">
           <div className="flex items-center gap-3 px-2">
             <Palette className="w-5 h-5 text-primary" />
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white/30">Brand Identities</h3>
@@ -183,7 +194,10 @@ export function VisualShowcase() {
             {featuredLogos.map((logo) => (
               <div 
                 key={logo.name}
-                className="relative h-48 rounded-[40px] bg-zinc-950 border border-white/10 flex items-center justify-center p-12 group hover:bg-zinc-900 transition-all overflow-hidden shadow-2xl"
+                className={cn(
+                  "relative h-40 rounded-[40px] border border-white/10 flex items-center justify-center p-8 group hover:opacity-90 transition-all overflow-hidden shadow-2xl",
+                  logo.bgColor
+                )}
               >
                 <div className="relative w-full h-full">
                   <Image 
@@ -206,9 +220,9 @@ export function VisualShowcase() {
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-2">
         <Link href="/work">
-          <Button variant="ghost" className="h-14 px-8 rounded-2xl text-white/40 hover:text-primary hover:bg-transparent flex gap-3 group">
+          <Button variant="ghost" className="h-12 px-8 rounded-2xl text-white/40 hover:text-primary hover:bg-transparent flex gap-3 group">
             <span className="font-bold uppercase tracking-widest text-xs">Explore Full Specialized Portfolio</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
           </Button>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -56,11 +55,11 @@ export function Work() {
     <section 
       id="work" 
       ref={sectionRef}
-      className="relative z-10 py-32 px-6 max-w-7xl w-full flex flex-col items-center gap-16 overflow-hidden"
+      className="relative z-10 py-12 px-6 max-w-7xl w-full flex flex-col items-center gap-10 overflow-hidden"
     >
       {/* Header with momentum entrance */}
       <div className={cn(
-        "flex flex-col items-center gap-4 text-center mb-8 transition-all duration-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex flex-col items-center gap-4 text-center mb-2 transition-all duration-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-24"
       )}>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
@@ -70,7 +69,7 @@ export function Work() {
         <h2 className="text-4xl md:text-7xl font-bold tracking-tight text-white max-w-3xl leading-tight">
           Specialty <span className="text-primary italic">Frameworks</span>
         </h2>
-        <p className="text-white/40 max-w-xl text-lg mt-4">
+        <p className="text-white/40 max-w-xl text-lg mt-2">
           A strategic highlight of core frameworks engineered to solve complex business challenges through technology and design.
         </p>
       </div>
@@ -90,7 +89,7 @@ export function Work() {
             )}
             style={{ transitionDelay: `${isVisible ? (400 + index * 100) : 0}ms` }}
           >
-            <div className="relative h-[480px] w-full p-8 rounded-[40px] border border-white/10 bg-black overflow-hidden flex flex-col justify-between transition-all duration-500 group-hover:border-primary/50 group-hover:bg-white/[0.02]">
+            <div className="relative h-[460px] w-full p-8 rounded-[40px] border border-white/10 bg-black overflow-hidden flex flex-col justify-between transition-all duration-500 group-hover:border-primary/50 group-hover:bg-white/[0.02]">
               <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none" 
                 style={{ 
                   backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
@@ -99,7 +98,7 @@ export function Work() {
               />
               
               <div className="relative z-10">
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-6">
                   <span className="text-xs font-bold text-white/30 font-mono tracking-widest uppercase">
                     Framework {index + 1}
                   </span>
@@ -112,7 +111,7 @@ export function Work() {
                 </h3>
               </div>
 
-              <div className="relative z-10 space-y-8">
+              <div className="relative z-10 space-y-6">
                 <p className="text-white/50 text-sm leading-relaxed">
                   {project.description}
                 </p>
@@ -130,11 +129,11 @@ export function Work() {
       </div>
 
       <div className={cn(
-        "flex justify-center pt-12 transition-all duration-[1000ms] delay-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex justify-center pt-4 transition-all duration-[1000ms] delay-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}>
         <Link href="/work">
-          <Button variant="outline" className="h-16 px-12 rounded-2xl border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/20 transition-all flex gap-3 group">
+          <Button variant="outline" className="h-14 px-12 rounded-2xl border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/20 transition-all flex gap-3 group">
             View All Specialized Work
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Button>
