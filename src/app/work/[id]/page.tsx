@@ -91,11 +91,10 @@ function InstagramPost({ url }: { url: string }) {
 
 /**
  * Component to play a Google Drive video reel in 9:16 aspect ratio.
- * Fixed size to maintain phone-like appearance on all screens.
  */
 function ReelPlayer({ id }: { id: string }) {
   return (
-    <div className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
+    <div className="relative aspect-[9/16] w-full max-w-[340px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
       <iframe
         src={`https://drive.google.com/file/d/${id}/preview`}
         className="absolute inset-0 w-full h-full border-none opacity-90 group-hover/reel:opacity-100 transition-opacity duration-500"
@@ -495,8 +494,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
-                  <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
+                  <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
+                  <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
                 </Carousel>
               </div>
 
@@ -517,8 +516,8 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="left-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
-                    <CarouselNext className="right-4 top-1/2 -translate-y-1/2 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all" />
+                    <CarouselPrevious className="left-4 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
+                    <CarouselNext className="right-4 h-12 w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
                   </Carousel>
                 </div>
               )}
