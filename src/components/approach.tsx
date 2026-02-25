@@ -50,7 +50,7 @@ export function Approach() {
     <section 
       id="approach" 
       ref={sectionRef}
-      className="relative z-10 py-16 md:py-20 px-6 max-w-7xl w-full flex flex-col items-center gap-8 overflow-hidden"
+      className="relative z-10 py-20 px-6 max-w-7xl w-full flex flex-col items-center gap-8 overflow-hidden"
     >
       <div className={cn(
         "flex flex-col items-center gap-4 text-center mb-4 transition-all duration-[2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",

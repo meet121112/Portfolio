@@ -88,34 +88,34 @@ export default function AboutPage() {
       <Navbar />
       
       {/* Hero Header */}
-      <section className="pt-24 pb-8 px-6 max-w-5xl w-full">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider mb-6 slide-up">
+      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 px-6 max-w-7xl w-full">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-8 slide-up">
           <Sparkles className="w-3 h-3 fill-primary" />
           MY STORY
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 slide-up">
-          Scaling <span className="text-primary italic">Creativity</span> with <span className="text-primary">Strategic Content Marketing</span>.
+        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-8 slide-up leading-[1.1]">
+          Scaling <span className="text-primary italic">Creativity</span> with <span className="text-primary">Strategic Marketing</span>.
         </h1>
-        <p className="text-lg md:text-xl text-white/60 max-w-4xl leading-relaxed slide-up text-left" style={{ animationDelay: '0.1s' }}>
-          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets. My approach is both creative and operational; I coordinate with cross-functional teams and external vendors to execute complex deliverables, manage marketing procurement and invoices, and support senior leadership on high-stakes special projects. Whether I am architecting digital-first motion snippets or delegating tasks to supporting teams, my goal is to deliver digital experiences that are technically superior and strategically sound.
+        <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-4xl leading-relaxed slide-up text-left" style={{ animationDelay: '0.1s' }}>
+          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets. My approach is both creative and operational; I coordinate with cross-functional teams and external vendors to execute complex deliverables, manage marketing procurement and invoices, and support senior leadership on high-stakes special projects.
         </p>
       </section>
 
       {/* Experience Section */}
-      <section ref={journeyRef} className="py-8 px-6 max-w-4xl w-full">
+      <section ref={journeyRef} className="py-16 md:py-24 px-6 max-w-5xl w-full">
         <div className={cn(
-          "flex items-center gap-4 mb-8 transition-all duration-1000",
+          "flex items-center gap-4 mb-12 transition-all duration-1000",
           isJourneyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <Briefcase className="text-primary w-6 h-6" />
-          <h2 className="text-3xl font-bold uppercase tracking-tight">Professional Journey</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-[0.1em]">Professional Journey</h2>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-12">
           {experiences.map((exp, i) => (
             <div 
               key={i} 
               className={cn(
-                "relative pl-8 border-l border-white/10 group transition-all duration-1000",
+                "relative pl-8 sm:pl-10 border-l border-white/10 group transition-all duration-1000",
                 isJourneyVisible 
                   ? "opacity-100 translate-x-0" 
                   : "opacity-0 -translate-x-12"
@@ -123,48 +123,45 @@ export default function AboutPage() {
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-primary transition-transform group-hover:scale-150" />
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">{exp.role}</h3>
-                <span className="text-sm font-mono text-white/40 uppercase">{exp.period}</span>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-primary transition-colors">{exp.role}</h3>
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">{exp.period}</span>
               </div>
-              <h4 className="text-white/70 font-medium mb-3">{exp.company}</h4>
-              <p className="text-white/50 leading-relaxed max-w-2xl">{exp.description}</p>
+              <h4 className="text-white/70 font-medium mb-3 text-lg">{exp.company}</h4>
+              <p className="text-white/50 leading-relaxed max-w-3xl text-base">{exp.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Motion Narrative Showcase Section */}
-      <section className="py-12 px-6 w-full flex flex-col items-center bg-zinc-900/20 border-y border-white/5">
+      <section className="py-16 md:py-24 px-6 w-full flex flex-col items-center bg-zinc-900/20 border-y border-white/5 overflow-hidden">
         <div className="max-w-7xl w-full flex flex-col items-center">
-          <div className="flex flex-col items-center text-center mb-10 space-y-4">
+          <div className="flex flex-col items-center text-center mb-12 space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
               <PlayCircle className="w-4 h-4" />
               Motion Narrative
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Visual <span className="text-primary italic">Storytelling</span></h2>
-            <p className="text-white/40 max-w-xl text-lg">A cinematic exploration of strategic digital orchestration and motion design.</p>
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">Visual <span className="text-primary italic">Storytelling</span></h2>
+            <p className="text-white/40 max-w-xl text-base sm:text-lg">A cinematic exploration of strategic digital orchestration and motion design.</p>
           </div>
           
           <div className="w-full max-w-6xl">
-            <div className="group relative rounded-[48px] overflow-hidden border border-white/10 bg-black aspect-video shadow-[0_0_100px_rgba(37,99,235,0.15)] transition-all duration-700 hover:border-primary/50 hover:scale-[1.01]">
+            <div className="group relative rounded-[32px] md:rounded-[56px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
                <iframe 
                  src="https://drive.google.com/file/d/18B9giS1QRI2aVwnKxAJvQWCusJhODW47/preview" 
-                 className="absolute inset-0 w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-auto"
-                 allow="autoplay; fullscreen; picture-in-picture"
+                 className="absolute inset-0 w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                 allow="autoplay; fullscreen"
                  loading="lazy"
                  title="Motion Narrative Video"
                />
-              
-              {/* Overlay Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none opacity-80" />
-              
-              <div className="absolute bottom-12 left-10 right-10 space-y-4 pointer-events-none">
-                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-[10px] font-bold text-primary uppercase tracking-widest backdrop-blur-md">
+              <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-10 right-6 sm:right-10 space-y-2 sm:space-y-4 pointer-events-none">
+                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/20 border border-primary/30 text-[9px] sm:text-[10px] font-bold text-primary uppercase tracking-widest backdrop-blur-md">
                     <PlayCircle className="w-3 h-3" />
                     Creative Orchestration
                  </div>
-                 <p className="text-sm text-white/50 leading-relaxed font-medium">
+                 <p className="text-xs sm:text-sm text-white/50 leading-relaxed font-medium hidden sm:block">
                     Showcasing the synergy between high-performance code and strategic visual storytelling.
                  </p>
               </div>
@@ -174,12 +171,12 @@ export default function AboutPage() {
       </section>
 
       {/* Methodology Section */}
-      <section className="py-12 px-6 max-w-5xl w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-16 md:py-24 px-6 max-w-7xl w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {methodology.map((item, idx) => (
             <div 
               key={idx} 
-              className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/30 transition-all group"
+              className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/30 transition-all group flex flex-col items-center text-center sm:items-start sm:text-left"
             >
               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
                 {item.icon}
@@ -192,19 +189,18 @@ export default function AboutPage() {
       </section>
 
       {/* Education Section */}
-      <section className="py-16 px-6 max-w-5xl w-full mx-auto">
-        <div className="mb-12 space-y-4">
+      <section className="py-16 md:py-24 px-6 max-w-7xl w-full mx-auto">
+        <div className="mb-16 space-y-4 flex flex-col items-center text-center sm:items-start sm:text-left">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
             <GraduationCap className="w-3 h-3" />
             ACADEMIC FOUNDATION
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-none">
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-none">
             Built For <span className="text-primary italic">Evolution.</span>
           </h2>
         </div>
 
         <div className="space-y-16 relative">
-          {/* Vertical Track Line */}
           <div className="absolute left-6 md:left-[22px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-white/10 to-transparent hidden md:block" />
 
           {educationMilestones.map((milestone, mIdx) => (
@@ -220,10 +216,10 @@ export default function AboutPage() {
                     {milestone.icon}
                   </div>
                   <div className="space-y-1">
-                    <span className="text-primary font-mono text-xs font-bold tracking-widest uppercase block">
+                    <span className="text-primary font-mono text-[10px] font-bold tracking-[0.2em] uppercase block">
                       {milestone.period}
                     </span>
-                    <span className="text-[10px] text-white/30 font-bold uppercase tracking-widest block md:hidden">
+                    <span className="text-[9px] text-white/30 font-bold uppercase tracking-[0.1em] block md:hidden">
                       {milestone.institution}
                     </span>
                   </div>
@@ -233,7 +229,7 @@ export default function AboutPage() {
               {/* Content (Right Side) */}
               <div className="md:col-span-3 space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight text-white">
+                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight text-white">
                     {milestone.title}
                   </h3>
                   <p className="text-white/40 text-lg font-medium hidden md:block">
@@ -241,7 +237,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 
-                <p className="text-white/50 text-lg leading-relaxed max-w-2xl">
+                <p className="text-white/50 text-base sm:text-lg leading-relaxed max-w-3xl">
                   {milestone.description}
                 </p>
 
@@ -249,15 +245,15 @@ export default function AboutPage() {
                 <div className="flex flex-wrap gap-4 pt-4">
                   {milestone.stats.map((stat, sIdx) => (
                     <div key={sIdx} className="px-5 py-3 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col items-start gap-0.5 min-w-[120px]">
-                      <span className="text-primary font-bold text-lg leading-none">{stat.label}</span>
+                      <span className="text-primary font-bold text-xl leading-none">{stat.label}</span>
                       <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">{stat.value}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="pt-4">
-                  <Button variant="ghost" className="p-0 text-white/40 hover:text-primary hover:bg-transparent flex gap-3 group/btn">
-                    <span className="font-bold uppercase tracking-widest text-[10px]">Curriculum Detail</span>
+                  <Button variant="ghost" className="p-0 text-white/40 hover:text-primary hover:bg-transparent flex gap-3 group/btn h-auto">
+                    <span className="font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">Curriculum Detail</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-2" />
                   </Button>
                 </div>
