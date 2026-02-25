@@ -89,6 +89,25 @@ function InstagramPost({ url }: { url: string }) {
   );
 }
 
+/**
+ * Component to play a Google Drive video reel in 9:16 aspect ratio.
+ * Fixed size to maintain phone-like appearance on all screens.
+ */
+function ReelPlayer({ id }: { id: string }) {
+  return (
+    <div className="relative aspect-[9/16] w-full max-w-[300px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
+      <iframe
+        src={`https://drive.google.com/file/d/${id}/preview`}
+        className="absolute inset-0 w-full h-full border-none opacity-90 group-hover/reel:opacity-100 transition-opacity duration-500"
+        allow="autoplay; fullscreen"
+        loading="lazy"
+        title="Specialized Reel"
+      />
+      <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-[32px] inset-px" />
+    </div>
+  );
+}
+
 // Tech Icon components (SVG)
 const TechIcons = {
   React: (
@@ -202,11 +221,11 @@ const projectDetails: Record<string, any> = {
       'https://www.instagram.com/p/DSGSNdIkfnT/'
     ],
     motionGraphics: [
-      'https://www.instagram.com/reel/DKSzjFmxI96/',
-      'https://www.instagram.com/reel/DJpijScRwQ5/',
-      'https://www.instagram.com/p/DSr63YDEVPX/',
-      'https://www.instagram.com/reel/DSdGiQFEWJq/',
-      'https://www.instagram.com/reel/DKNwA0JRqlW/'
+      '1lBmk4zuyFWxExIb_U8UrQPZpa5YKWSp7',
+      '1pxl3yx7GD7535ByccxQAImbyfhW7s2wG',
+      '13nTaWB_XBGXRqoZk2APgGaW7WvwRw_zc',
+      '1kbZih9I9h3yC-r4Ft1VSwziykB0fF2je',
+      '1M1BqBoP3OqD53_K6AJn2W8LfZac6TDMe'
     ],
     features: [
       { title: 'Campaign Assets', icon: <Palette className="w-6 h-6" />, desc: 'High-quality visual production for social, print, and advertisements.' },
@@ -490,9 +509,11 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                   
                   <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-12">
                     <CarouselContent className="-ml-4">
-                      {project.motionGraphics.map((url: string, idx: number) => (
+                      {project.motionGraphics.map((id: string, idx: number) => (
                         <CarouselItem key={`motion-${idx}`} className="pl-4 basis-full sm:basis-1/2">
-                          <InstagramPost url={url} />
+                          <div className="px-1">
+                            <ReelPlayer id={id} />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
