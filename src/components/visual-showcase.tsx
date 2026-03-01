@@ -14,6 +14,7 @@ import {
   Layout
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { 
   Carousel, 
   CarouselContent, 
@@ -68,9 +69,12 @@ function InstagramEmbed({ url }: { url: string }) {
   );
 }
 
-function ReelPlayer({ id }: { id: string }) {
+function ReelPlayer({ id, isFeatured = false }: { id: string, isFeatured?: boolean }) {
   return (
-    <div className="relative aspect-[9/16] w-full max-w-[340px] mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel">
+    <div className={cn(
+      "relative w-full mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel",
+      isFeatured ? "aspect-video max-w-none" : "aspect-[9/16] max-w-[340px]"
+    )}>
       <iframe
         src={`https://drive.google.com/file/d/${id}/preview`}
         className="absolute inset-0 w-full h-full border-none opacity-90 group-hover/reel:opacity-100 transition-opacity duration-500"
@@ -78,7 +82,7 @@ function ReelPlayer({ id }: { id: string }) {
         loading="lazy"
         title="Specialized Reel"
       />
-      <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-[32px] inset-px" />
+      {!isFeatured && <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-[32px] inset-px" />}
     </div>
   );
 }
@@ -179,42 +183,68 @@ export function VisualShowcase() {
         </div>
 
         <TabsContent value="motion" className="space-y-12 slide-up focus-visible:outline-none">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="flex items-center gap-3 px-2 mb-2">
+          <div className="space-y-12">
+            {/* Featured Production Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 px-2">
                 <Video className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Featured Production</h3>
               </div>
-              <div className="group relative rounded-[24px] md:rounded-[48px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
-                 <iframe 
-                   src="https://drive.google.com/file/d/18B9giS1QRI2aVwnKxAJvQWCusJhODW47/preview" 
-                   className="absolute inset-0 w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-                   allow="autoplay; fullscreen"
-                   loading="lazy"
-                   title="Motion Narrative Video"
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none opacity-60" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+                {/* 1st Featured Spot: Drive Video (Strategic Production) */}
+                <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
+                  <iframe
+                    src="https://drive.google.com/file/d/18B9giS1QRI2aVwnKxAJvQWCusJhODW47/preview"
+                    className="absolute inset-0 w-full h-full border-none"
+                    allow="autoplay; fullscreen"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 pointer-events-none">
+                    <Badge className="bg-primary/20 backdrop-blur-md border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1">Strategic Performance</Badge>
+                  </div>
+                </div>
+
+                {/* 2nd Featured Spot: Local Video (Main.mp4) */}
+                <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
+                   <video 
+                     autoPlay 
+                     muted 
+                     loop 
+                     playsInline 
+                     className="absolute inset-0 w-full h-full object-cover"
+                   >
+                     <source src="/Main.mp4" type="video/mp4" />
+                   </video>
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                   <div className="absolute bottom-4 left-4">
+                     <Badge className="bg-primary/20 backdrop-blur-md border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1">Cinematic Showcase</Badge>
+                   </div>
+                </div>
               </div>
             </div>
 
-            <div className="lg:col-span-4 space-y-6">
-              <div className="flex items-center gap-3 px-2 mb-2">
+            {/* Specialized Reels Carousel */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 px-2">
                 <PlayCircle className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Specialized Reels</h3>
               </div>
-              <Carousel opts={{ align: "start", loop: true }} className="w-full relative px-10">
-                <CarouselContent>
-                  {reelDriveIds.map((id, idx) => (
-                    <CarouselItem key={`reel-${idx}`}>
-                      <div className="px-1">
-                        <ReelPlayer id={id} />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="-left-4 h-10 w-10 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
-                <CarouselNext className="-right-4 h-10 w-10 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full" />
-              </Carousel>
+              <div className="relative w-full px-4 md:px-16">
+                <Carousel opts={{ align: "start", loop: true }} className="w-full relative">
+                  <CarouselContent className="-ml-4">
+                    {reelDriveIds.map((id, idx) => (
+                      <CarouselItem key={`reel-${idx}`} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                        <div className="px-1 flex justify-center">
+                          <ReelPlayer id={id} />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0 -translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
+                  <CarouselNext className="right-0 translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
+                </Carousel>
+              </div>
             </div>
           </div>
         </TabsContent>

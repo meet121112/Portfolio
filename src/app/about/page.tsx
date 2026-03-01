@@ -88,7 +88,7 @@ export default function AboutPage() {
       <Navbar />
       
       {/* Hero Header */}
-      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 px-6 max-w-7xl w-full">
+      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 px-6 max-w-7xl w-full text-center md:text-left">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-8 slide-up">
           <Sparkles className="w-3 h-3 fill-primary" />
           MY STORY
@@ -96,8 +96,8 @@ export default function AboutPage() {
         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-8 slide-up leading-[1.1]">
           Scaling <span className="text-primary italic">Creativity</span> with <span className="text-primary">Strategic Marketing</span>.
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-4xl leading-relaxed slide-up text-left" style={{ animationDelay: '0.1s' }}>
-          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets. My approach is both creative and operational; I coordinate with cross-functional teams and external vendors to execute complex deliverables, manage marketing procurement and invoices, and support senior leadership on high-stakes special projects.
+        <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-4xl leading-relaxed slide-up mx-auto md:mx-0" style={{ animationDelay: '0.1s' }}>
+          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets.
         </p>
       </section>
 
@@ -143,19 +143,21 @@ export default function AboutPage() {
               Motion Narrative
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">Visual <span className="text-primary italic">Storytelling</span></h2>
-            <p className="text-white/40 max-w-xl text-base sm:text-lg">A cinematic exploration of strategic digital orchestration and motion design.</p>
+            <p className="text-white/40 max-w-xl text-sm sm:text-lg">A cinematic exploration of strategic digital orchestration and motion design.</p>
           </div>
           
           <div className="w-full max-w-6xl">
             <div className="group relative rounded-[32px] md:rounded-[56px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
-               <iframe 
-                 src="https://drive.google.com/file/d/18B9giS1QRI2aVwnKxAJvQWCusJhODW47/preview" 
-                 className="absolute inset-0 w-full h-full border-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-                 allow="autoplay; fullscreen"
-                 loading="lazy"
-                 title="Motion Narrative Video"
-               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none opacity-80" />
+               <video 
+                 autoPlay 
+                 muted 
+                 loop 
+                 playsInline 
+                 className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700"
+               >
+                 <source src="/Main.mp4" type="video/mp4" />
+               </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-10 right-6 sm:right-10 space-y-2 sm:space-y-4 pointer-events-none">
                  <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/20 border border-primary/30 text-[9px] sm:text-[10px] font-bold text-primary uppercase tracking-widest backdrop-blur-md">
                     <PlayCircle className="w-3 h-3" />
