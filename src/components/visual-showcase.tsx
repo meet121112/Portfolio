@@ -32,15 +32,15 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 declare global {
-  interface Window {
+  interface window {
     instgrm: any;
   }
 }
 
 function InstagramEmbed({ url }: { url: string }) {
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.instgrm && window.instgrm.Embeds) {
-      window.instgrm.Embeds.process();
+    if (typeof window !== 'undefined' && (window as any).instgrm && (window as any).instgrm.Embeds) {
+      (window as any).instgrm.Embeds.process();
     }
   }, [url]);
 
@@ -73,7 +73,7 @@ function ReelPlayer({ id, isFeatured = false }: { id: string, isFeatured?: boole
   return (
     <div className={cn(
       "relative w-full mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel",
-      isFeatured ? "aspect-video max-w-none" : "aspect-[9/16] max-w-[340px]"
+      isFeatured ? "aspect-video max-w-none" : "aspect-[9/16] w-[300px]"
     )}>
       <iframe
         src={`https://drive.google.com/file/d/${id}/preview`}
@@ -160,24 +160,24 @@ export function VisualShowcase() {
         <div className="w-full overflow-x-auto pb-4 mb-8 flex md:justify-center scrollbar-hide">
           <TabsList className="bg-white/5 border border-white/10 p-1 h-12 md:h-14 rounded-2xl gap-1 md:gap-2 backdrop-blur-md flex-nowrap inline-flex min-w-max mx-auto md:mx-0">
             <TabsTrigger value="motion" className="rounded-xl px-4 md:px-6 data-[state=active]:bg-primary data-[state=active]:text-white transition-all gap-2 text-[10px] md:text-sm">
-              <PlayCircle className="w-4 h-4" />
-              <span className="hidden md:inline">Motion Narrative</span>
+              <PlayCircle className="w-4 h-4 shrink-0" />
               <span className="hidden min-[425px]:inline md:hidden">Motion</span>
+              <span className="hidden md:inline">Motion Narrative</span>
             </TabsTrigger>
             <TabsTrigger value="social" className="rounded-xl px-4 md:px-6 data-[state=active]:bg-primary data-[state=active]:text-white transition-all gap-2 text-[10px] md:text-sm">
-              <Instagram className="w-4 h-4" />
-              <span className="hidden md:inline">Social Strategy</span>
+              <Instagram className="w-4 h-4 shrink-0" />
               <span className="hidden min-[425px]:inline md:hidden">Social</span>
+              <span className="hidden md:inline">Social Strategy</span>
             </TabsTrigger>
             <TabsTrigger value="platforms" className="rounded-xl px-4 md:px-6 data-[state=active]:bg-primary data-[state=active]:text-white transition-all gap-2 text-[10px] md:text-sm">
-              <Globe className="w-4 h-4" />
-              <span className="hidden md:inline">Live Platforms</span>
+              <Globe className="w-4 h-4 shrink-0" />
               <span className="hidden min-[425px]:inline md:hidden">Web</span>
+              <span className="hidden md:inline">Live Platforms</span>
             </TabsTrigger>
             <TabsTrigger value="identity" className="rounded-xl px-4 md:px-6 data-[state=active]:bg-primary data-[state=active]:text-white transition-all gap-2 text-[10px] md:text-sm">
-              <Palette className="w-4 h-4" />
-              <span className="hidden md:inline">Brand Identity</span>
+              <Palette className="w-4 h-4 shrink-0" />
               <span className="hidden min-[425px]:inline md:hidden">Brand</span>
+              <span className="hidden md:inline">Brand Identity</span>
             </TabsTrigger>
           </TabsList>
         </div>
@@ -190,7 +190,7 @@ export function VisualShowcase() {
                 <Video className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Featured Production</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {/* 1st Featured Spot: Drive Video (Strategic Production) */}
                 <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
                   <iframe
@@ -221,6 +221,23 @@ export function VisualShowcase() {
                      <Badge className="bg-primary/20 backdrop-blur-md border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1">Cinematic Showcase</Badge>
                    </div>
                 </div>
+
+                {/* 3rd Featured Spot: Local Video (clock.mp4) */}
+                <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
+                   <video 
+                     autoPlay 
+                     muted 
+                     loop 
+                     playsInline 
+                     className="absolute inset-0 w-full h-full object-cover"
+                   >
+                     <source src="/clock.mp4" type="video/mp4" />
+                   </video>
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                   <div className="absolute bottom-4 left-4">
+                     <Badge className="bg-primary/20 backdrop-blur-md border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1">Temporal Rhythm</Badge>
+                   </div>
+                </div>
               </div>
             </div>
 
@@ -230,19 +247,17 @@ export function VisualShowcase() {
                 <PlayCircle className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Specialized Reels</h3>
               </div>
-              <div className="relative w-full px-4 md:px-16">
+              <div className="relative w-full px-12 md:px-16">
                 <Carousel opts={{ align: "start", loop: true }} className="w-full relative">
                   <CarouselContent className="-ml-4">
                     {reelDriveIds.map((id, idx) => (
-                      <CarouselItem key={`reel-${idx}`} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                        <div className="px-1 flex justify-center">
-                          <ReelPlayer id={id} />
-                        </div>
+                      <CarouselItem key={`reel-${idx}`} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 flex justify-center">
+                        <ReelPlayer id={id} />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="left-0 -translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
-                  <CarouselNext className="right-0 translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
+                  <CarouselPrevious className="left-0 -translate-x-0 md:-translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
+                  <CarouselNext className="right-0 translate-x-0 md:translate-x-1/2 h-10 w-10 md:h-12 md:w-12 bg-black/60 backdrop-blur-xl border-white/10 hover:border-primary/50 text-white transition-all rounded-full z-20" />
                 </Carousel>
               </div>
             </div>
