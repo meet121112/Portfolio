@@ -73,7 +73,7 @@ function ReelPlayer({ id, isFeatured = false }: { id: string, isFeatured?: boole
   return (
     <div className={cn(
       "relative w-full mx-auto rounded-[32px] overflow-hidden bg-black border border-white/10 shadow-2xl group/reel",
-      isFeatured ? "aspect-video max-w-none" : "aspect-[9/16] w-[300px]"
+      isFeatured ? "aspect-video max-w-none" : "aspect-[9/16] w-[300px] sm:w-[340px]"
     )}>
       <iframe
         src={`https://drive.google.com/file/d/${id}/preview`}
@@ -190,7 +190,7 @@ export function VisualShowcase() {
                 <Video className="w-5 h-5 text-primary" />
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Featured Production</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
                 {/* 1st Featured Spot: Drive Video (Strategic Production) */}
                 <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
                   <iframe
@@ -205,7 +205,24 @@ export function VisualShowcase() {
                   </div>
                 </div>
 
-                {/* 2nd Featured Spot: Local Video (Main.mp4) */}
+                {/* 2nd Featured Spot: Local Video (meet.mp4 - Identity Animation) */}
+                <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
+                   <video 
+                     autoPlay 
+                     muted 
+                     loop 
+                     playsInline 
+                     className="absolute inset-0 w-full h-full object-cover"
+                   >
+                     <source src="/meet.mp4" type="video/mp4" />
+                   </video>
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                   <div className="absolute bottom-4 left-4">
+                     <Badge className="bg-primary/20 backdrop-blur-md border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1">Identity Animation</Badge>
+                   </div>
+                </div>
+
+                {/* 3rd Featured Spot: Local Video (Main.mp4 - Cinematic Showcase) */}
                 <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
                    <video 
                      autoPlay 
@@ -222,7 +239,7 @@ export function VisualShowcase() {
                    </div>
                 </div>
 
-                {/* 3rd Featured Spot: Local Video (clock.mp4) */}
+                {/* 4th Featured Spot: Local Video (clock.mp4 - Temporal Rhythm) */}
                 <div className="group relative rounded-[32px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
                    <video 
                      autoPlay 
