@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Palette, Layout, Code2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Palette, Layout, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -11,19 +11,19 @@ const projects = [
     id: 'specialty-01',
     title: 'BRAND IDENTITY & STRATEGIC CONTENT',
     icon: <Palette className="w-10 h-10 text-primary" />,
-    description: 'A creative visual and verbal engine that translates brand values into high-impact assets and conversion-driven content for websites and social marketing.',
+    description: 'A creative visual engine translating brand values into high-impact assets and conversion-driven content for multi-channel marketing.',
+  },
+  {
+    id: 'specialty-06',
+    title: 'IT TECHNICIAN & SYSTEM OPERATIONS',
+    icon: <Cpu className="w-10 h-10 text-primary" />,
+    description: 'Enterprise IT infrastructure management specializing in Windows Server, Entra ID, VLAN/VPN security, and automated disaster recovery.',
   },
   {
     id: 'specialty-02',
     title: 'UX/UI INTERFACE STRATEGIST',
     icon: <Layout className="w-10 h-10 text-primary" />,
-    description: 'A user-centric framework that transforms complex requirements into intuitive wireframes and interactive prototypes, prioritizing friction-less navigation.',
-  },
-  {
-    id: 'specialty-03',
-    title: 'FULL-STACK WEB DEVELOPER',
-    icon: <Code2 className="w-10 h-10 text-primary" />,
-    description: 'An end-to-end digital architect specializing in responsive frontend frameworks and robust backend logic to create scalable, SEO-friendly experiences.',
+    description: 'A user-centric framework transforming complex requirements into intuitive wireframes and interactive prototypes, prioritizing efficiency.',
   },
 ];
 
@@ -57,9 +57,8 @@ export function Work() {
       ref={sectionRef}
       className="relative z-10 py-16 md:py-24 px-6 max-w-7xl w-full flex flex-col items-center gap-10 overflow-hidden"
     >
-      {/* Header with momentum entrance */}
       <div className={cn(
-        "flex flex-col items-center gap-4 text-center mb-2 transition-all duration-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex flex-col items-center gap-4 text-center mb-2 transition-all [transition-duration:1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-24"
       )}>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
@@ -74,9 +73,8 @@ export function Work() {
         </p>
       </div>
 
-      {/* Highlights Grid */}
       <div className={cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-6xl transition-all duration-[1500ms] delay-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-6xl transition-all [transition-duration:1500ms] delay-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
       )}>
         {projects.map((project, index) => (
@@ -84,7 +82,7 @@ export function Work() {
             key={project.id} 
             href={`/work/${project.id}`} 
             className={cn(
-              "block group transition-all duration-[1500ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+              "block group transition-all [transition-duration:1500ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-48"
             )}
             style={{ transitionDelay: `${isVisible ? (400 + index * 100) : 0}ms` }}
@@ -116,20 +114,18 @@ export function Work() {
                   {project.description}
                 </p>
                 <div className="flex justify-between items-center pt-6 border-t border-white/5">
-                  <span className="text-white/40 group-hover:text-white transition-colors gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest group-hover:text-primary flex items-center">
+                  <span className="text-white/40 group-hover:text-primary transition-colors gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest flex items-center">
                     Explore Strategy <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
               </div>
-
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>
           </Link>
         ))}
       </div>
 
       <div className={cn(
-        "flex justify-center pt-4 transition-all duration-[1000ms] delay-[1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex justify-center pt-4 transition-all [transition-duration:1000ms] [transition-delay:1200ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       )}>
         <Link href="/work">

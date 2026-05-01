@@ -53,7 +53,7 @@ export function Approach() {
       className="relative z-10 py-20 px-6 max-w-7xl w-full flex flex-col items-center gap-8 overflow-hidden"
     >
       <div className={cn(
-        "flex flex-col items-center gap-4 text-center mb-4 transition-all duration-[2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+        "flex flex-col items-center gap-4 text-center mb-4 transition-all [transition-duration:2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider">
@@ -71,7 +71,7 @@ export function Approach() {
           <div 
             key={step.id}
             className={cn(
-              "relative w-full group -mt-8 md:-mt-16 first:mt-0 transition-all duration-[2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+              "relative w-full group -mt-8 md:-mt-16 first:mt-0 transition-all [transition-duration:2000ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
             )}
             style={{ 
@@ -122,7 +122,7 @@ export function Approach() {
       
       {/* Background Decorative Line */}
       <div className={cn(
-        "absolute left-1/2 -translate-x-1/2 top-[40%] bottom-0 w-px bg-gradient-to-b from-primary/20 to-transparent -z-10 transition-all duration-[2000ms] delay-[2500ms]",
+        "absolute left-1/2 -translate-x-1/2 top-[40%] bottom-0 w-px bg-gradient-to-b from-primary/20 to-transparent -z-10 transition-all [transition-duration:2000ms] [transition-delay:2500ms]",
         isVisible ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
       )} />
     </section>
