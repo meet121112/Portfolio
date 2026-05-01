@@ -10,7 +10,7 @@ export function About() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const aboutText = "I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets. My approach is both creative and operational; I coordinate with cross-functional teams and external vendors to execute complex deliverables, manage marketing procurement and invoices, and support senior leadership on high-stakes special projects. Whether I am architecting digital-first motion snippets or delegating tasks to supporting teams, my goal is to deliver digital experiences that are technically superior and strategically sound.";
+  const aboutText = "I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration and IT operations. My expertise spans high-performance visual asset design, end-to-end social media management, and the coordination of complex digital deliverables. Beyond the creative sphere, I am a seasoned IT technician, managing hardware procurement, network infrastructure including VLAN/VPN management, Windows Server environments, and Microsoft Entra ID (Azure AD). I specialize in 3-2-1 backup strategies, SharePoint permission architecture, network printer configuration, terminal security, and VoIP phone system support. My approach bridges creative vision with technical precision, leveraging automation and data-driven strategy to ensure maximum uptime and absolute brand consistency for critical business environments.";
   const aboutWords = aboutText.split(' ');
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function About() {
         </h2>
       </div>
 
-      {/* Action Button - Linked to Journey */}
+      {/* Action Button */}
       <div className="pt-4 w-full sm:w-auto">
         <Link href="/about" className="w-full sm:w-auto">
           <Button className="w-full sm:w-auto h-14 px-10 rounded-2xl text-md font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_40px_rgba(37,99,235,0.25)] transition-all flex gap-3 group">

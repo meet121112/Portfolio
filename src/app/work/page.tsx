@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
-import { Sparkles, ArrowRight, ExternalLink, Palette, Layout, Code2, AppWindow, Server } from 'lucide-react';
+import { Sparkles, ArrowRight, ExternalLink, Palette, Layout, Code2, AppWindow, Server, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -15,7 +15,14 @@ export default function WorkPage() {
       title: 'BRAND IDENTITY & STRATEGIC CONTENT',
       icon: <Palette className="w-8 h-8 text-primary" />,
       tags: ['Branding', 'Content', 'Social'],
-      description: 'A creative visual and verbal engine that translates brand values into high-impact assets and conversion-driven content for websites and social marketing.'
+      description: 'A creative visual engine translating brand values into high-impact assets and conversion-driven content for websites and social marketing.'
+    },
+    {
+      id: 'specialty-06',
+      title: 'IT TECHNICIAN & SYSTEM OPERATIONS',
+      icon: <Cpu className="w-8 h-8 text-primary" />,
+      tags: ['Windows Server', 'Azure AD', 'Security', 'Automation'],
+      description: 'Enterprise IT infrastructure management specializing in Windows Server, cloud identity (Entra ID), network security, and automated backup strategies.'
     },
     {
       id: 'specialty-02',
@@ -51,7 +58,6 @@ export default function WorkPage() {
     <main className="flex flex-col items-center min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 scroll-smooth">
       <Navbar />
       
-      {/* Header */}
       <section className="pt-32 sm:pt-40 md:pt-48 pb-12 px-6 max-w-7xl w-full text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-8 slide-up">
           <Sparkles className="w-3 h-3 fill-primary" />
@@ -65,7 +71,6 @@ export default function WorkPage() {
         </p>
       </section>
 
-      {/* Projects Grid */}
       <section className="py-12 px-6 max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {projects.map((project, i) => (
           <Link 
@@ -74,11 +79,8 @@ export default function WorkPage() {
             className="group relative p-8 sm:p-12 rounded-[40px] md:rounded-[56px] border border-white/10 bg-white/[0.02] overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-primary/50 slide-up h-full"
             style={{ animationDelay: `${0.1 * (i + 1)}s` }}
           >
-            {/* Background Decoration */}
             <div className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity pointer-events-none" 
-              style={{ 
-                backgroundImage: `radial-gradient(circle at top right, rgba(37,99,235,0.4), transparent 70%)`,
-              }} 
+              style={{ backgroundImage: `radial-gradient(circle at top right, rgba(37,99,235,0.4), transparent 70%)` }} 
             />
             
             <div className="space-y-10">
@@ -106,35 +108,15 @@ export default function WorkPage() {
             </div>
 
             <div className="pt-10 mt-10 border-t border-white/5 flex justify-between items-center">
-              <span className="text-white/40 group-hover:text-white transition-all gap-3 text-xs font-bold uppercase tracking-[0.2em] group-hover:text-primary flex items-center">
+              <span className="text-white/40 group-hover:text-primary transition-all gap-3 text-xs font-bold uppercase tracking-[0.2em] flex items-center">
                 Explore Framework <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
               </span>
               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <ExternalLink className="w-5 h-5 text-primary" />
               </div>
             </div>
-
-            {/* Hover Glow */}
-            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </Link>
         ))}
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 px-6 max-w-5xl w-full text-center">
-        <div className="p-10 sm:p-20 rounded-[48px] md:rounded-[64px] bg-gradient-to-br from-primary/10 via-transparent to-accent/5 border border-white/10 relative overflow-hidden">
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight">Have a vision?</h2>
-            <p className="text-white/60 mb-10 text-lg sm:text-xl max-w-lg mx-auto">Let&apos;s build something technically superior and strategically sound.</p>
-            <Link href="/contact" className="inline-block">
-              <Button size="lg" className="h-16 px-12 rounded-3xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-2xl transition-all group">
-                Start a Conversation
-                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-          </div>
-          <div className="absolute top-[-50%] left-[-20%] w-[100%] h-[100%] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse" />
-        </div>
       </section>
 
       <Footer />

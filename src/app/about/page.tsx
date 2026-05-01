@@ -33,7 +33,7 @@ export default function AboutPage() {
       company: 'Technology Solution',
       role: 'Marketing & Developer',
       period: '1 Year & Continue',
-      description: 'Encompassing Web Design, Graphics, and Strategic Marketing Development in a high-growth environment.'
+      description: 'Encompassing Web Design, Graphics, Strategic Marketing Development, and enterprise IT infrastructure support including Windows Server, Entra ID, and SharePoint management.'
     },
     {
       company: 'Toshal Infotech',
@@ -94,10 +94,10 @@ export default function AboutPage() {
           MY STORY
         </div>
         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-8 slide-up leading-[1.1]">
-          Scaling <span className="text-primary italic">Creativity</span> with <span className="text-primary">Strategic Marketing</span>.
+          Scaling <span className="text-primary italic">Creativity</span> with <span className="text-primary">Technical Ops</span>.
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-4xl leading-relaxed slide-up mx-auto md:mx-0" style={{ animationDelay: '0.1s' }}>
-          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration. My expertise lies in designing high-performance visual assets for multi-channel campaigns spanning social media content, digital signage, print advertisements, and enterprise-level presentations. I manage end-to-end social media calendars, leveraging engagement metrics and performance data to drive measurable year-over-year growth while ensuring absolute brand consistency across all creative assets.
+          I am Meetkumar Patel, a multi-disciplinary professional specializing in strategic digital orchestration and IT operations. My expertise spans high-performance visual asset design and end-to-end social media management, paired with enterprise-level technical infrastructure support. As a seasoned IT technician, I manage Windows Server environments, Microsoft Entra ID (Azure AD), SharePoint architecture, and terminal security. Beyond digital strategy, I handle hardware procurement, network infrastructure including VLAN/VPN management, 3-2-1 backup strategies, and VoIP maintenance to ensure maximum uptime for critical business environments.
         </p>
       </section>
 
@@ -148,17 +148,11 @@ export default function AboutPage() {
           
           <div className="w-full max-w-6xl">
             <div className="group relative rounded-[32px] md:rounded-[56px] overflow-hidden border border-white/10 bg-black aspect-video shadow-2xl transition-all duration-700 hover:border-primary/50">
-               <video 
-                 autoPlay 
-                 muted 
-                 loop 
-                 playsInline 
-                 className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700"
-               >
+               <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-700">
                  <source src="/Main.mp4" type="video/mp4" />
                </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-10 right-6 sm:right-10 space-y-2 sm:space-y-4 pointer-events-none">
+              <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-10 right-6 sm:left-10 space-y-2 sm:space-y-4 pointer-events-none">
                  <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/20 border border-primary/30 text-[9px] sm:text-[10px] font-bold text-primary uppercase tracking-widest backdrop-blur-md">
                     <PlayCircle className="w-3 h-3" />
                     Creative Orchestration
@@ -169,99 +163,6 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Methodology Section */}
-      <section className="py-16 md:py-24 px-6 max-w-7xl w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {methodology.map((item, idx) => (
-            <div 
-              key={idx} 
-              className="p-8 rounded-[32px] bg-white/[0.02] border border-white/5 hover:border-primary/30 transition-all group flex flex-col items-center text-center sm:items-start sm:text-left"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3">{item.label}</h3>
-              <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section className="py-16 md:py-24 px-6 max-w-7xl w-full mx-auto">
-        <div className="mb-16 space-y-4 flex flex-col items-center text-center sm:items-start sm:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase">
-            <GraduationCap className="w-3 h-3" />
-            ACADEMIC FOUNDATION
-          </div>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-none">
-            Built For <span className="text-primary italic">Evolution.</span>
-          </h2>
-        </div>
-
-        <div className="space-y-16 relative">
-          <div className="absolute left-6 md:left-[22px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-white/10 to-transparent hidden md:block" />
-
-          {educationMilestones.map((milestone, mIdx) => (
-            <div 
-              key={milestone.id} 
-              id={`education-${milestone.id}`} 
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-16 relative"
-            >
-              {/* Year & Icon (Left Rail) */}
-              <div className="md:col-span-1">
-                <div className="md:sticky md:top-40 flex md:flex-col items-center md:items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-primary relative z-10 shrink-0 shadow-2xl backdrop-blur-sm">
-                    {milestone.icon}
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-primary font-mono text-[10px] font-bold tracking-[0.2em] uppercase block">
-                      {milestone.period}
-                    </span>
-                    <span className="text-[9px] text-white/30 font-bold uppercase tracking-[0.1em] block md:hidden">
-                      {milestone.institution}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Content (Right Side) */}
-              <div className="md:col-span-3 space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight text-white">
-                    {milestone.title}
-                  </h3>
-                  <p className="text-white/40 text-lg font-medium hidden md:block">
-                    {milestone.institution}
-                  </p>
-                </div>
-                
-                <p className="text-white/50 text-base sm:text-lg leading-relaxed max-w-3xl">
-                  {milestone.description}
-                </p>
-
-                {/* Stats Row */}
-                <div className="flex flex-wrap gap-4 pt-4">
-                  {milestone.stats.map((stat, sIdx) => (
-                    <div key={sIdx} className="px-5 py-3 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col items-start gap-0.5 min-w-[120px]">
-                      <span className="text-primary font-bold text-xl leading-none">{stat.label}</span>
-                      <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">{stat.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4">
-                  <Button variant="ghost" className="p-0 text-white/40 hover:text-primary hover:bg-transparent flex gap-3 group/btn h-auto">
-                    <span className="font-bold uppercase tracking-widest text-[9px] sm:text-[10px]">Curriculum Detail</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-2" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
